@@ -59,9 +59,9 @@ export default function MainComponent({ gotoPage }) {
       if (result.success) {
         let _shopList = data?.getShopList.items;
         // console.log("Gql.Shop.getSohpList = ", _shopList);
-        callApiLog(
-          "Gql.Shop.getSohpList -> 62  = " + JSON.stringify(_shopList)
-        );
+        // callApiLog(
+        //   "Gql.Shop.getSohpList -> 62  = " + JSON.stringify(_shopList)
+        // );
         setShopList(_shopList);
       } else {
         console.log("Gql.Shop.getSohpList error = ", result.message);
