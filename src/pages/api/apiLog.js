@@ -4,7 +4,7 @@
 
 export default async function handler(req, res) {
   try {
-    // console.log("Call API Log => ", req.body);
+    console.log("Call API Log => ", req.body);
     let result = { success: true };
     return res.status(200).json(result);
   } catch (error) {

@@ -15,12 +15,7 @@ export default function ScanQRComponent({ gotoPage }) {
   const { liffObject, user, lineToken } = useUserContext();
   const { setPointDataList } = usePointContext();
 
-  const [doChexIn, { loading, error, data }] = useMutation(CHEX_POINT, {
-    onCompleted: () => {
-      alert("ChexIn Completed!");
-      // callApiLog("chexInData = " + JSON.stringify(data));
-    },
-  });
+  const [doChexIn, { loading, error, data }] = useMutation(CHEX_POINT);
 
   // useEffect(() => {
   //   const initLiff = async () => {
@@ -85,14 +80,23 @@ export default function ScanQRComponent({ gotoPage }) {
       // await callApiLog("ScanQR data =" + data);
       // await callApiLog("ScanQR lineToken  =" + lineToken);
       try {
-        await callApiLog("Do ChexIn");
+        // await callApiLog("Do ChexIn");
         let _result = await doChexIn({
           variables: { lineToken: lineToken, shopId: data },
         });
         // callApiLog("ChexIn result =" + JSON.stringify(_result));
+
+        if (!_result?.data?.chexPoint.result.success) {
+          alert(_result?.data?.chexPoint.result.message);
+          gotoPage("main");
+          return;
+        }
         if (_result?.data?.chexPoint) {
           let _item = _result.data.chexPoint.item;
           setPointDataList(_item);
+          alert("ChexIn Completed!");
+          gotoPage("main");
+          return;
         }
       } catch (e) {
         // await callApiLog("ChexIn Error = " + JSON.stringify(e));

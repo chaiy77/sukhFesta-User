@@ -238,23 +238,11 @@ export default function Home() {
       <nav className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-lg border-t border-gray-200 z-99">
         <div className="max-w-7xl mx-auto px-2">
           <div className="grid grid-cols-5 gap-1 py-2">
-            {navItems.map((item) => {
+            {navItems.map((item, index) => {
               const isActive = true;
               return (
-                // <Link
-                //   key={item.name}
-                //   to={""}
-                //   className={`flex flex-col items-center gap-1 py-2 px-2 rounded-xl transition-all ${
-                //     isActive
-                //       ? "bg-gradient-to-br from-indigo-600 to-purple-600 text-white"
-                //       : "text-gray-600 hover:bg-gray-100"
-                //   }`}
-                // >
-
-                // <item.icon className="w-5 h-5" />
-                // <span className="text-xs font-medium">{item.name}</span>
-                // </Link>
                 <div
+                  key={index}
                   onClick={() => {
                     let _page = item.page;
                     // console.log(_page);
