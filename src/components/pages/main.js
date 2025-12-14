@@ -47,15 +47,15 @@ export default function MainComponent({ gotoPage }) {
   // }, [pointDataList]);
 
   useEffect(() => {
-    console.log("main start");
+    // console.log("main start");
     selectShop(null);
   }, []);
 
   useEffect(() => {
-    console.log(data);
+    // console.log(data);
     if (data) {
       let result = data?.getShopList?.result;
-      console.log(result);
+      // console.log(result);
       if (result.success) {
         let _shopList = data?.getShopList.items;
         // console.log("Gql.Shop.getSohpList = ", _shopList);
@@ -64,14 +64,14 @@ export default function MainComponent({ gotoPage }) {
         // );
         setShopList(_shopList);
       } else {
-        console.log("Gql.Shop.getSohpList error = ", result.message);
+        // console.log("Gql.Shop.getSohpList error = ", result.message);
       }
     }
   }, [data, error]);
 
   useEffect(() => {
     if (shopList.length > 0) {
-      console.log("ShopList = ", shopList);
+      // console.log("ShopList = ", shopList);
     }
   }, [shopList]);
 

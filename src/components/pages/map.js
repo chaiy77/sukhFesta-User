@@ -21,7 +21,7 @@ export default function MapComponent() {
   const { selectedShop, selectShop, shopList } = useShopContext();
 
   const onShopClick = (shop) => {
-    console.log("onShopClick ", shop);
+    // console.log("onShopClick ", shop);s
     let _shop = selectedShop?.shopName.en == shop.shopName.en ? null : shop;
     selectShop(_shop);
   };
