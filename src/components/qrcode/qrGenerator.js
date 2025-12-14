@@ -15,7 +15,7 @@ const qrCodeOptions = {
     type: "square",
   },
   qrOptions: {
-    typeNumber: 4,
+    typeNumber: 0,
   },
   imageOptions: {
     margin: 5,
