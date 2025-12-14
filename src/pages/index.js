@@ -257,9 +257,9 @@ export default function Home() {
                 <div
                   onClick={() => {
                     let _page = item.page;
-                    console.log(_page);
+                    // console.log(_page);
                     if (currentPage != _page && _page != "") {
-                      console.log("goto page ", _page);
+                      // console.log("goto page ", _page);
                       gotoPage(_page);
                     }
                   }}
