@@ -49,9 +49,10 @@ export default function MapComponent() {
               row-start-3 flex items-center justify-center border-b border-blue-500"
       >
         <div className="grid grid-cols-1 gap-3 flex flex-col mx-auto justify-center md:w-4/5">
-          {shopList.map((shop) => {
+          {shopList.map((shop, index) => {
             return (
               <ShopItemDetailComponent
+                key={index}
                 shop={shop}
                 onShopClick={(shop) => onShopClick(shop)}
                 selectedShop={selectedShop}
