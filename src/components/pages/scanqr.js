@@ -18,7 +18,7 @@ export default function ScanQRComponent({ gotoPage }) {
   const [doChexIn, { loading, error, data }] = useMutation(CHEX_POINT, {
     onCompleted: () => {
       alert("ChexIn Completed!");
-      callApiLog("chexInData = " + JSON.stringify(data));
+      // callApiLog("chexInData = " + JSON.stringify(data));
     },
   });
 
@@ -47,13 +47,13 @@ export default function ScanQRComponent({ gotoPage }) {
   // }, []);
 
   useEffect(() => {
-    callApiLog("ScanQRPage => useEffect => liffObject");
+    // callApiLog("ScanQRPage => useEffect => liffObject");
     // callApiLog(JSON.stringify(liffObject));
     // callApiLog("lineToken = " + lineToken);
     const initLiffAndScan = async () => {
       try {
         setProcessing(true);
-        await callApiLog("ScanQRPage => useEffect => Start Scan");
+        // await callApiLog("ScanQRPage => useEffect => Start Scan");
         const result = await liffObject.scanCodeV2();
 
         // await callApiLog(
@@ -63,14 +63,14 @@ export default function ScanQRComponent({ gotoPage }) {
           setProcessing(false);
           await handleQRCodedata(result.value);
         } else {
-          await callApiLog(
-            "scan QR -> 41 -> scan result= Can not get qr value"
-          );
+          // await callApiLog(
+          //   "scan QR -> 41 -> scan result= Can not get qr value"
+          // );
           setQrError("Can not detect QR Code");
         }
       } catch (err) {
-        await callApiLog("Scan failed:", err);
-        await callApiLog("กรุณาเปิดผ่านแอป LINE เท่านั้นเพื่อสแกน QR Code");
+        // await callApiLog("Scan failed:", err);
+        // await callApiLog("กรุณาเปิดผ่านแอป LINE เท่านั้นเพื่อสแกน QR Code");
         setProcessing(false);
       }
     };
@@ -82,20 +82,20 @@ export default function ScanQRComponent({ gotoPage }) {
   const handleQRCodedata = async (data) => {
     if (data) {
       setQrData(data);
-      await callApiLog("ScanQR data =" + data);
-      await callApiLog("ScanQR lineToken  =" + lineToken);
+      // await callApiLog("ScanQR data =" + data);
+      // await callApiLog("ScanQR lineToken  =" + lineToken);
       try {
         await callApiLog("Do ChexIn");
         let _result = await doChexIn({
           variables: { lineToken: lineToken, shopId: data },
         });
-        callApiLog("ChexIn result =" + JSON.stringify(_result));
+        // callApiLog("ChexIn result =" + JSON.stringify(_result));
         if (_result?.data?.chexPoint) {
           let _item = _result.data.chexPoint.item;
           setPointDataList(_item);
         }
       } catch (e) {
-        await callApiLog("ChexIn Error = " + JSON.stringify(e));
+        // await callApiLog("ChexIn Error = " + JSON.stringify(e));
       }
       //let dataPointName = data.replace(/\s/g, "").toLowerCase();
 

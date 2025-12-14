@@ -57,10 +57,8 @@ export default function Home() {
 
   useEffect(() => {
     const getLiff = async () => {
-      await callApiLog("Home -> useEffect -> getLiff()");
-
+      // await callApiLog("Home -> useEffect -> getLiff()");
       try {
-        await callApiLog();
         await liff.init({ liffId: process.env.LIFF_ID });
         // await callApiLog("Home -> useEffect -> after liffInit()");
         await liff.ready;
@@ -68,7 +66,7 @@ export default function Home() {
           liff.login();
         }
 
-        await callApiLog("Home => 98 => liff = " + JSON.stringify(liff));
+        // await callApiLog("Home => 98 => liff = " + JSON.stringify(liff));
         if (!_.isEmpty(liff)) {
           // await callApiLog("Home => 100 => liff Completed");
           const idToken = liff.getIDToken();
@@ -90,14 +88,14 @@ export default function Home() {
               };
 
               setPointDataList(_pointList);
-              await callApiLog(
-                "Home -> useEffect 151 -> call getUserProfile -> goto Main page"
-              );
+              // await callApiLog(
+              //   "Home -> useEffect 151 -> call getUserProfile -> goto Main page"
+              // );
               gotoPage("main");
             } else {
-              await callApiLog(
-                "Home -> useEffect 152 -> call getUserProfile -> user is empty"
-              );
+              // await callApiLog(
+              //   "Home -> useEffect 152 -> call getUserProfile -> user is empty"
+              // );
 
               gotoPage("register");
             }
@@ -106,7 +104,7 @@ export default function Home() {
 
         //   // setLoading(false);
       } catch (error) {
-        await callApiLog("Liff ERROR = " + JSON.stringify(error.message));
+        // await callApiLog("Liff ERROR = " + JSON.stringify(error.message));
         gotoPage("error");
       }
       ////// PLEASE DELETE ////////////
@@ -166,7 +164,7 @@ export default function Home() {
     let _user = _result.data.getUserInfo.items;
 
     if (!errors && result?.success) {
-      await callApiLog("getUserInfo Successed " + JSON.stringify(_user));
+      // await callApiLog("getUserInfo Successed " + JSON.stringify(_user));
       return _user;
     }
   };
@@ -213,7 +211,6 @@ export default function Home() {
       );
     }
     if (page == "map") {
-      console.log("load  MAP View");
       return (
         <MapComponent
           gotoPage={(page) => {
