@@ -16,9 +16,11 @@ const qrCodeOptions = {
   },
   qrOptions: {
     typeNumber: 0,
+    errorCorrectionLevel: "L",
+    mode: "Byte",
   },
   imageOptions: {
-    margin: 5,
+    margin: 0,
     hideBackgroundDots: true,
   },
 };

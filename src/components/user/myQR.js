@@ -11,7 +11,7 @@ const MyQRComponent = ({ gotoPage }) => {
   return (
     <div className="flex flex-col gap-[32px] row-start-2 items-center ">
       <div>
-        <h1 className="flex items-center py-4">My QR Code</h1>
+        <h1 className="flex items-center ">My QR Code</h1>
         <QrCodeGenerator qrData={lineToken} />
       </div>
     </div>
