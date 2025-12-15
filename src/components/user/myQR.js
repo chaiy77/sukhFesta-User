@@ -9,7 +9,7 @@ const MyQRComponent = ({ gotoPage }) => {
   const { lineToken } = useUserContext();
 
   return (
-    <div className="flex flex-col gap-[32px] row-start-2 items-center ">
+    <div className="flex flex-col  row-start-2 items-center ">
       <div>
         <h1 className="flex items-center ">My QR Code</h1>
         <QrCodeGenerator qrData={lineToken} />
