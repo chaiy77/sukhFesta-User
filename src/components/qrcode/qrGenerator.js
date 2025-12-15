@@ -6,8 +6,8 @@ import { useRef, useEffect, useState } from "react";
 
 // Default options for a styled QR code
 const qrCodeOptions = {
-  width: 240,
-  height: 240,
+  width: 300,
+  height: 300,
   data: "testData", // Default/initial data
   image: "", // Optional: Put your logo in the /public folder
   dotsOptions: {
