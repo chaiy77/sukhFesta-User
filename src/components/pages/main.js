@@ -11,16 +11,6 @@ import ShopItemShortDetailComponent from "../shop/shopItemShortDetail";
 import { useShopContext } from "@/context/shopContext";
 import { useUserContext } from "@/context/userContext";
 import StarTable from "../table/starTable";
-import {
-  ScanLine,
-  TrendingUp,
-  TrendingDown,
-  Sparkles,
-  ArrowRight,
-  MapPin,
-  Store,
-  Coins,
-} from "lucide-react";
 
 import { GET_SHOP_LIST } from "@/store/graphql/shop";
 import { useQuery } from "@apollo/client/react";
@@ -103,6 +93,7 @@ export default function MainComponent({ gotoPage }) {
         <div className="grid grid-cols-1 gap-3 flex flex-col mx-auto justify-center md:w-4/5">
           {/* {shopListArray.map((shop) => { */}
           {shopList.map((shop, index) => {
+            // console.log(shop);
             if (shop.status == "active") {
               return (
                 <div key={index}>

@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "lt": "lt --port 3030  --subdomain sukfesta-liff-64",
-    "ngrok": "ngrok http 3030"
+    "ngrok": "ngrok http 3030",
+    "cloudfare": "cloudflared tunnel --url http://localhost:3030"
   },
   "dependencies": {
     "@apollo/client": "^4.0.7",
