@@ -71,7 +71,7 @@ export default function ScanQRComponent({ gotoPage }) {
           error.message === "User cancelled the operation." ||
           error.code === "USER_CANCELLED"
         ) {
-          gotoPage(main);
+          gotoPage("main");
         } else {
           alert("Can not open camera: " + error.message);
         }
