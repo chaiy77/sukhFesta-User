@@ -29,6 +29,7 @@ const GET_SHOP_LIST = gql`
         zipcode
         imageURL
         telephone
+        status
       }
     }
   }
