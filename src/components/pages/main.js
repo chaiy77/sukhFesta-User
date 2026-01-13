@@ -103,14 +103,16 @@ export default function MainComponent({ gotoPage }) {
         <div className="grid grid-cols-1 gap-3 flex flex-col mx-auto justify-center md:w-4/5">
           {/* {shopListArray.map((shop) => { */}
           {shopList.map((shop, index) => {
-            return (
-              <div key={index}>
-                <ShopItemShortDetailComponent
-                  shop={shop}
-                  onMapClick={onMapClickHandle}
-                />
-              </div>
-            );
+            if (shop.status == "active") {
+              return (
+                <div key={index}>
+                  <ShopItemShortDetailComponent
+                    shop={shop}
+                    onMapClick={onMapClickHandle}
+                  />
+                </div>
+              );
+            }
           })}
         </div>
       </div>
