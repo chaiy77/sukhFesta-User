@@ -67,6 +67,14 @@ export default function ScanQRComponent({ gotoPage }) {
         // await callApiLog("Scan failed:", err);
         // await callApiLog("กรุณาเปิดผ่านแอป LINE เท่านั้นเพื่อสแกน QR Code");
         setProcessing(false);
+        if (
+          error.message === "User cancelled the operation." ||
+          error.code === "USER_CANCELLED"
+        ) {
+          gotoPage(main);
+        } else {
+          alert("Can not open camera: " + error.message);
+        }
       }
     };
     if (!_.isEmpty(liffObject) && !processing) {
