@@ -30,10 +30,12 @@ export default function UserMainPageComponent({ user }) {
   //--- for slide component
 
   useEffect(() => {
+
     // callApiLog(
     //   "userInfo => useEffect => pointDataList = " +
     //     JSON.stringify(pointDataList)
     // );
+
     setPointList(pointDataList);
   }, [pointDataList]);
 

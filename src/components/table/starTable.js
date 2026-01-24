@@ -17,7 +17,9 @@ export default function StarTable() {
       "
       >
         {pointDataList.map((point, i) => {
+
           // console.log(point);
+
           if (point.typeOfPoint == "extra") {
             return (
               <div

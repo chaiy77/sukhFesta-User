@@ -57,23 +57,27 @@ export default function Home() {
 
   useEffect(() => {
     const getLiff = async () => {
+
       // await callApiLog("Home -> useEffect -> getLiff()");
       try {
         await liff.init({ liffId: process.env.NEXT_PUBLIC_LIFF_ID });
         // await callApiLog("Home -> useEffect -> after liffInit()");
         console.log("l_id = ", process.env.NEXT_PUBLIC_LIFF_ID);
+
         await liff.ready;
         if (!liff.isLoggedIn()) {
           liff.login();
         }
-
         // await callApiLog("Home => 98 => liff = " + JSON.stringify(liff));
+
         if (!_.isEmpty(liff)) {
           // await callApiLog("Home => 100 => liff Completed");
           const idToken = liff.getIDToken();
           // await callApiLog("Home => 101  => ID Token 1 = " + idToken);
           if (!_.isEmpty(idToken)) {
+
             console.log(token);
+
             setLiffObject(liff);
             setLineToken(idToken);
 
@@ -90,6 +94,7 @@ export default function Home() {
               };
 
               setPointDataList(_pointList);
+
               // await callApiLog(
               //   "Home -> useEffect 151 -> call getUserProfile -> goto Main page"
               // );
@@ -99,6 +104,7 @@ export default function Home() {
               //   "Home -> useEffect 152 -> call getUserProfile -> user is empty"
               // );
 
+
               gotoPage("register");
             }
           }
@@ -106,7 +112,10 @@ export default function Home() {
 
         //   // setLoading(false);
       } catch (error) {
+
         // await callApiLog("Liff ERROR = " + JSON.stringify(error.message));
+
+        await callApiLog("Liff ERROR = " + JSON.stringify(error.message));
         gotoPage("error");
       }
       ////// PLEASE DELETE ////////////
@@ -166,7 +175,9 @@ export default function Home() {
     let _user = _result.data.getUserInfo.items;
 
     if (!errors && result?.success) {
+
       // await callApiLog("getUserInfo Successed " + JSON.stringify(_user));
+
       return _user;
     }
   };
@@ -250,6 +261,7 @@ export default function Home() {
                     // console.log(_page);
                     if (currentPage != _page && _page != "") {
                       // console.log("goto page ", _page);
+
                       gotoPage(_page);
                     }
                   }}

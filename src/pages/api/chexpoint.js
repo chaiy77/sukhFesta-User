@@ -2,7 +2,9 @@
 
 export default function handler(req, res) {
   try {
+
     // console.log("Call   API => data :", req.body);
+
     const method = req.body?.method;
     switch (method) {
       case "apiLog":

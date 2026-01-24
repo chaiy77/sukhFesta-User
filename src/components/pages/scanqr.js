@@ -17,6 +17,14 @@ export default function ScanQRComponent({ gotoPage }) {
 
   const [doChexIn, { loading, error, data }] = useMutation(CHEX_POINT);
 
+  // const [doChexIn, { loading, error, data }] = useMutation(CHEX_POINT, {
+  //   onCompleted: () => {
+  //     alert("ChexIn Completed!");
+  //     callApiLog("chexInData = " + JSON.stringify(data));
+  //   },
+  // });
+
+
   // useEffect(() => {
   //   const initLiff = async () => {
   //     try {
@@ -42,13 +50,16 @@ export default function ScanQRComponent({ gotoPage }) {
   // }, []);
 
   useEffect(() => {
+
     // callApiLog("ScanQRPage => useEffect => liffObject");
+
     // callApiLog(JSON.stringify(liffObject));
     // callApiLog("lineToken = " + lineToken);
     const initLiffAndScan = async () => {
       try {
         setProcessing(true);
         // await callApiLog("ScanQRPage => useEffect => Start Scan");
+
         const result = await liffObject.scanCodeV2();
 
         // await callApiLog(
@@ -75,6 +86,7 @@ export default function ScanQRComponent({ gotoPage }) {
         } else {
           alert("Can not open camera: " + error.message);
         }
+
       }
     };
     if (!_.isEmpty(liffObject) && !processing) {
@@ -85,6 +97,7 @@ export default function ScanQRComponent({ gotoPage }) {
   const handleQRCodedata = async (data) => {
     if (data) {
       setQrData(data);
+
       // await callApiLog("ScanQR data =" + data);
       // await callApiLog("ScanQR lineToken  =" + lineToken);
       try {
@@ -108,6 +121,7 @@ export default function ScanQRComponent({ gotoPage }) {
         }
       } catch (e) {
         // await callApiLog("ChexIn Error = " + JSON.stringify(e));
+
       }
       //let dataPointName = data.replace(/\s/g, "").toLowerCase();
 

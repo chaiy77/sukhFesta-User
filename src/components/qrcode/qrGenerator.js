@@ -6,8 +6,10 @@ import { useRef, useEffect, useState } from "react";
 
 // Default options for a styled QR code
 const qrCodeOptions = {
+
   width: 360,
   height: 360,
+
   data: "testData", // Default/initial data
   image: "", // Optional: Put your logo in the /public folder
   dotsOptions: {
@@ -15,12 +17,14 @@ const qrCodeOptions = {
     type: "square",
   },
   qrOptions: {
+
     typeNumber: 0,
     errorCorrectionLevel: "L",
     mode: "Byte",
   },
   imageOptions: {
     margin: 0,
+
     hideBackgroundDots: true,
   },
 };
@@ -46,7 +50,9 @@ export default function QrCodeGenerator({ qrData }) {
 
         // Append the QR code to the ref
         if (ref.current) {
+
           // console.log("ref.inner QRCODE ", qrData);
+
           qrCode.append(ref.current);
         }
 
@@ -55,14 +61,18 @@ export default function QrCodeGenerator({ qrData }) {
         setIsLoading(false);
       })
       .catch((error) => {
+
         // console.error("Failed to load qr-code-styling on client:", error);
+
         setIsLoading(false);
       });
 
     // Cleanup is still important
     return () => {
       if (ref.current) {
+
         // console.log("ref.inner QRCODE ", qrData);
+
         ref.current.innerHTML = "";
       }
     };
@@ -71,7 +81,9 @@ export default function QrCodeGenerator({ qrData }) {
   useEffect(() => {
     // 🚨 NEW CRITICAL BLOCK 🚨
     if (qrCodeInstance && ref.current) {
+
       // console.log(ref.current);
+
       qrCodeInstance.append(ref.current);
     }
   }, [qrCodeInstance, ref.current]);
@@ -79,7 +91,9 @@ export default function QrCodeGenerator({ qrData }) {
   useEffect(() => {
     if (qrData && qrCodeInstance) {
       // Update the instance with the new URL
+
       // console.log("QR Generator ", qrData);
+
       qrCodeInstance.update({ data: qrData });
     }
   }, [qrData, qrCodeInstance]);

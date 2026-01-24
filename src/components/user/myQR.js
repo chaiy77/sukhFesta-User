@@ -13,6 +13,7 @@ const MyQRComponent = ({ gotoPage }) => {
       <div>
         <h1 className="flex items-center ">My QR Code</h1>
         <QrCodeGenerator qrData={lineToken} />
+
       </div>
     </div>
   );

@@ -11,7 +11,6 @@ import ShopItemShortDetailComponent from "../shop/shopItemShortDetail";
 import { useShopContext } from "@/context/shopContext";
 import { useUserContext } from "@/context/userContext";
 import StarTable from "../table/starTable";
-
 import { GET_SHOP_LIST } from "@/store/graphql/shop";
 import { useQuery } from "@apollo/client/react";
 
@@ -37,7 +36,9 @@ export default function MainComponent({ gotoPage }) {
   // }, [pointDataList]);
 
   useEffect(() => {
+
     // console.log("main start");
+
     selectShop(null);
   }, []);
 
@@ -55,15 +56,20 @@ export default function MainComponent({ gotoPage }) {
         setShopList(_shopList);
       } else {
         // console.log("Gql.Shop.getSohpList error = ", result.message);
+
       }
     }
   }, [data, error]);
 
-  useEffect(() => {
-    if (shopList.length > 0) {
-      // console.log("ShopList = ", shopList);
-    }
-  }, [shopList]);
+//   useEffect(() => {
+//     if (shopList.length > 0) {
+// <<<<<<< HEAD
+//       // console.log("ShopList = ", shopList);
+// =======
+//       console.log("ShopList = ", shopList);
+// >>>>>>> 1d4af4d (init git)
+//     }
+//   }, [shopList]);
 
   const onMapClickHandle = () => {
     gotoPage("map");
@@ -92,6 +98,7 @@ export default function MainComponent({ gotoPage }) {
       >
         <div className="grid grid-cols-1 gap-3 flex flex-col mx-auto justify-center md:w-4/5">
           {/* {shopListArray.map((shop) => { */}
+
           {shopList.map((shop, index) => {
             // console.log(shop);
             if (shop.status == "active") {
@@ -104,6 +111,7 @@ export default function MainComponent({ gotoPage }) {
                 </div>
               );
             }
+
           })}
         </div>
       </div>

@@ -54,6 +54,7 @@ export default function MapView({
   //   shops[0].location.longitude,
   // ];\
 
+
   // console.log(
   //   "MapView => shop list  =",
   //   shops[0].location.latitude,
@@ -126,9 +127,11 @@ export default function MapView({
             key={shop.id}
             position={[shop.location.latitude, shop.location.longitude]}
             icon={shopIcon}
+
             // eventHandlers={{
             //   click: () => onMarkerClick(shop),
             // }}
+
           >
             <Popup>
               <div className="p-2 min-w-[200px]">
