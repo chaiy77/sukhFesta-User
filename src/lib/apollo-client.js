@@ -101,13 +101,13 @@ import {
 import { createAuthLink } from "aws-appsync-auth-link";
 import { createSubscriptionHandshakeLink } from "aws-appsync-subscription-link";
 
-const url = process.env.APP_SYNC_URL;
-const region = process.env.APP_SYNC_REGION;
+const url = process.env.NEXT_PUBLIC_APP_SYNC_URL;
+const region = process.env.NEXT_PUBLIC_APP_SYNC_REGION;
 
 // 🔐 Auth mode (here: API_KEY). Later you can swap to OPENID_CONNECT / COGNITO / IAM.
 const auth = {
   type: "API_KEY", // "AMAZON_COGNITO_USER_POOLS" | "OPENID_CONNECT" | "AWS_IAM"
-  apiKey: process.env.APPSYNC_API_KEY,
+  apiKey: process.env.NEXT_PUBLIC_APPSYNC_API_KEY,
 };
 
 const httpLink = new HttpLink({ uri: url });
