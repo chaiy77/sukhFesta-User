@@ -61,7 +61,7 @@ export default function Home() {
       try {
         await liff.init({ liffId: process.env.NEXT_PUBLIC_LIFF_ID });
         // await callApiLog("Home -> useEffect -> after liffInit()");
-        console.log("l_id = ", process.env.NEXT_PUBLIC_LIFF_ID);
+        // console.log("l_id = ", process.env.NEXT_PUBLIC_LIFF_ID);
 
         await liff.ready;
         if (!liff.isLoggedIn()) {
@@ -74,7 +74,7 @@ export default function Home() {
           const idToken = liff.getIDToken();
           // await callApiLog("Home => 101  => ID Token 1 = " + idToken);
           if (!_.isEmpty(idToken)) {
-            console.log(idToken);
+            // console.log(idToken);
 
             setLiffObject(liff);
             setLineToken(idToken);
