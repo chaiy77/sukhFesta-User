@@ -57,7 +57,6 @@ export default function Home() {
 
   useEffect(() => {
     const getLiff = async () => {
-
       // await callApiLog("Home -> useEffect -> getLiff()");
       try {
         await liff.init({ liffId: process.env.NEXT_PUBLIC_LIFF_ID });
@@ -75,8 +74,7 @@ export default function Home() {
           const idToken = liff.getIDToken();
           // await callApiLog("Home => 101  => ID Token 1 = " + idToken);
           if (!_.isEmpty(idToken)) {
-
-            console.log(token);
+            console.log(idToken);
 
             setLiffObject(liff);
             setLineToken(idToken);
@@ -104,7 +102,6 @@ export default function Home() {
               //   "Home -> useEffect 152 -> call getUserProfile -> user is empty"
               // );
 
-
               gotoPage("register");
             }
           }
@@ -112,7 +109,6 @@ export default function Home() {
 
         //   // setLoading(false);
       } catch (error) {
-
         // await callApiLog("Liff ERROR = " + JSON.stringify(error.message));
 
         await callApiLog("Liff ERROR = " + JSON.stringify(error.message));
@@ -175,7 +171,6 @@ export default function Home() {
     let _user = _result.data.getUserInfo.items;
 
     if (!errors && result?.success) {
-
       // await callApiLog("getUserInfo Successed " + JSON.stringify(_user));
 
       return _user;
