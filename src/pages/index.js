@@ -59,7 +59,7 @@ export default function Home() {
     const getLiff = async () => {
       // await callApiLog("Home -> useEffect -> getLiff()");
       try {
-        await liff.init({ liffId: process.env.LIFF_ID });
+        await liff.init({ liffId: process.env.NEXT_PUBLIC_LIFF_ID });
         // await callApiLog("Home -> useEffect -> after liffInit()");
         await liff.ready;
         if (!liff.isLoggedIn()) {
