@@ -36,7 +36,6 @@ export default function MainComponent({ gotoPage }) {
   // }, [pointDataList]);
 
   useEffect(() => {
-
     // console.log("main start");
 
     selectShop(null);
@@ -56,20 +55,19 @@ export default function MainComponent({ gotoPage }) {
         setShopList(_shopList);
       } else {
         // console.log("Gql.Shop.getSohpList error = ", result.message);
-
       }
     }
   }, [data, error]);
 
-//   useEffect(() => {
-//     if (shopList.length > 0) {
-// <<<<<<< HEAD
-//       // console.log("ShopList = ", shopList);
-// =======
-//       console.log("ShopList = ", shopList);
-// >>>>>>> 1d4af4d (init git)
-//     }
-//   }, [shopList]);
+  //   useEffect(() => {
+  //     if (shopList.length > 0) {
+  // <<<<<<< HEAD
+  //       // console.log("ShopList = ", shopList);
+  // =======
+  //       console.log("ShopList = ", shopList);
+  // >>>>>>> 1d4af4d (init git)
+  //     }
+  //   }, [shopList]);
 
   const onMapClickHandle = () => {
     gotoPage("map");
@@ -81,20 +79,19 @@ export default function MainComponent({ gotoPage }) {
     <div
       // grid grid-cols-1 h-screen border-2 border-black
       //         grid-rows-[10px_1fr_2fr_10px]
-      className={`${geistSans.className} ${geistMono.className} grid 
-      grid-rows-[10px_1fr_auto] gap-2 h-screen  font-[family-name:var(--font-geist-sans)]`}
+      className={`${geistSans.className} ${geistMono.className}  h-screen  font-[family-name:var(--font-geist-sans)]`}
     >
       {/* <div className="flex flex-col w-full"> */}
       <div
-        className="bg-blue-300 p-4 text-white text-xl font-bold 
-              row-start-2 flex items-center justify-center border-b border-gray-500"
+        className="bg-blue-300  p-4 text-xl font-bold 
+              row-start-2 flex  border-b border-gray-500"
       >
         <UserMainPageComponent user={user} />
       </div>
 
       <div
-        className="bg-green-500 pt-4 p-2 text-white text-xl font-bold 
-              row-start-3  border-b border-gray-500"
+        className="bg-green-500 mt-4 pt-4 p-2 text-white text-xl font-bold 
+               border-b border-gray-500"
       >
         <div className="grid grid-cols-1 gap-3 flex flex-col mx-auto justify-center md:w-4/5">
           {/* {shopListArray.map((shop) => { */}
@@ -111,7 +108,6 @@ export default function MainComponent({ gotoPage }) {
                 </div>
               );
             }
-
           })}
         </div>
       </div>

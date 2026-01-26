@@ -30,7 +30,6 @@ export default function UserMainPageComponent({ user }) {
   //--- for slide component
 
   useEffect(() => {
-
     // callApiLog(
     //   "userInfo => useEffect => pointDataList = " +
     //     JSON.stringify(pointDataList)
@@ -41,8 +40,38 @@ export default function UserMainPageComponent({ user }) {
 
   const UserDetailCompoent = () => {
     return (
-      <div className="grid grid-rows-[1fr_3fr] gap-2">
-        <div className="flex flex-row w-full">
+      <div className="grid  grid-cols-3 gap-4 text-user-info">
+        <div className="col-span-2">
+          <div className="grid grid-rows-2 ">
+            <div className="sm:text-xl">
+              <div className="">{user.lineName}</div>
+            </div>
+            <div className="flex flex-row w-full mb-1 text-sm sm:text-md">
+              <div className="px-2">
+                <p> Sukh-tokens</p>
+              </div>
+              <div className="px-2 ">
+                {pointList?.goldStars ? pointList?.goldStars.length : 0}
+              </div>
+              <div>
+                <span className=" ">tokens</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="flex justify-items-end w-full">
+          <div className="flex flex-col  items-center px-4 w-full">
+            <div>
+              <QrCodeIcon
+                className="w-[32px] h-[32px] sm:w-[40px] sm:h-[40px]"
+                onClick={() => setCurrentSlide(1)}
+              />
+            </div>
+            <div className="items-center text-[10px] sm:text-sm">my QR</div>
+          </div>
+        </div>
+
+        {/* <div className="flex flex-row w-full">
           <div className="flex flex-col w-5/6">
             <div className="">{user.lineName}</div>
           </div>
@@ -50,56 +79,35 @@ export default function UserMainPageComponent({ user }) {
             <QrCodeIcon size={32} onClick={() => setCurrentSlide(1)} />
           </div>
         </div>
-        <div className="grid grid-cols-[1fr_1fr] gap-4 flex w-full">
-          <Card className="flex w-full relative overflow-hidden bg-gradient-to-br from-gray-400 via-gray-500 to-gray-600 border-0 shadow-xl">
-            {/* <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-32 translate-x-32" />
-            <div className="absolute bottom-0 left-0 w-48 h-48 bg-black/10 rounded-full translate-y-24 -translate-x-24" /> */}
-            <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16" />
-            <div className="absolute bottom-0 left-0 w-24 h-24 bg-black/10 rounded-full translate-y-12 -translate-x-12" />
 
-            <CardContent className="relative p-2">
-              <div className="flex items-start justify-between mb-4">
-                <div>
-                  <p className="text-white/80 text-sm font-medium mb-2">
-                    Silver Points
-                  </p>
-                  <div className="flex items-baseline gap-2">
-                    <h1 className="text-4xl font-bold text-white">
-                      {pointList?.silverStars
-                        ? pointList?.silverStars.length
-                        : 0}
-                    </h1>
-                    <span className="text-lg text-white/80 font-medium">
-                      pts
-                    </span>
-                  </div>
-                </div>
-                <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
-                  <Coins className="w-5 h-5 text-white" />
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+        <div className="flex flex-row w-full">
+          <div>
+            <p className="text-white/80 font-medium mb-2">Sukh-tokens</p>
+          </div>
+          <div className="flex items-baseline gap-2">
+            <h1 className="text-md  font-bold text-white">
+              {pointList?.goldStars ? pointList?.goldStars.length : 0}
+            </h1>
+            <span className=" text-white/80 font-medium">tokens</span>
+          </div>
+        </div> */}
 
-          {/* Gold Points Card */}
-          <Card className="relative overflow-hidden bg-gradient-to-br  from-yellow-400 via-yellow-500 to-amber-600 border-0 shadow-xl">
+        {/* Gold Points Card */}
+        {/* <Card className="relative overflow-hidden bg-gradient-to-br  from-yellow-400 via-yellow-500 to-amber-600 border-0 shadow-xl">
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-32 translate-x-32" />
             <div className="absolute bottom-0 left-0 w-48 h-48 bg-black/10 rounded-full translate-y-24 -translate-x-24" />
-            {/* <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16" />
-            <div className="absolute bottom-0 left-0 w-24 h-24 bg-black/10 rounded-full translate-y-12 -translate-x-12" /> */}
-
             <CardContent className="relative p-2">
               <div className="flex items-start justify-between mb-4">
                 <div>
                   <p className="text-white/80 text-sm font-medium mb-2">
-                    Gold Points
+                    Sukh-tokens
                   </p>
                   <div className="flex items-baseline gap-2">
                     <h1 className="text-4xl font-bold text-white">
                       {pointList?.goldStars ? pointList?.goldStars.length : 0}
                     </h1>
                     <span className="text-lg text-white/80 font-medium">
-                      pts
+                      tokens
                     </span>
                   </div>
                 </div>
@@ -108,8 +116,7 @@ export default function UserMainPageComponent({ user }) {
                 </div>
               </div>
             </CardContent>
-          </Card>
-        </div>
+          </Card> */}
       </div>
     );
   };
@@ -137,13 +144,13 @@ export default function UserMainPageComponent({ user }) {
 
   if (currentSlide == 0) {
     return (
-      <div className="flex flex-col item-center justify-center w-full">
+      <div className="flex flex-col  w-full">
         <UserDetailCompoent />
       </div>
     );
   } else {
     return (
-      <div className="flex flex-col item-center justify-center w-full">
+      <div className="flex flex-col items-center justify-center w-full">
         <UserQRComponent />
       </div>
     );
