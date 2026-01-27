@@ -51,7 +51,7 @@ export default function UserMainPageComponent({ user }) {
                 <p> Sukh-tokens</p>
               </div>
               <div className="px-2 ">
-                {pointList?.goldStars ? pointList?.goldStars.length : 0}
+                {pointList?.silverStars ? pointList?.silverStars.length : 0}
               </div>
               <div>
                 <span className=" ">tokens</span>
@@ -133,6 +133,7 @@ export default function UserMainPageComponent({ user }) {
             className=" w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-lg px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
             onClick={() => {
               setCurrentSlide(0);
+              window.location.reload();
             }}
           >
             Back

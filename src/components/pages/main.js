@@ -83,15 +83,15 @@ export default function MainComponent({ gotoPage }) {
     >
       {/* <div className="flex flex-col w-full"> */}
       <div
-        className="bg-blue-300  p-4 text-xl font-bold 
-              row-start-2 flex  border-b border-gray-500"
+        className="bg-blue-200  p-4 text-xl font-bold 
+              row-start-2 flex  border-b border-gray-500 rounded-lg"
       >
         <UserMainPageComponent user={user} />
       </div>
 
       <div
-        className="bg-green-500 mt-4 pt-4 p-2 text-white text-xl font-bold 
-               border-b border-gray-500"
+        className="bg-green-200 mt-4 pt-2 p-1 text-white text-xl font-bold 
+               border-b border-gray-500 rounded-lg"
       >
         <div className="grid grid-cols-1 gap-3 flex flex-col mx-auto justify-center md:w-4/5">
           {/* {shopListArray.map((shop) => { */}

@@ -24,33 +24,7 @@ export default function ScanQRComponent({ gotoPage }) {
   //   },
   // });
 
-
-  // useEffect(() => {
-  //   const initLiff = async () => {
-  //     try {
-  //       await liff.init({ liffId: process.env.LIFF_ID }); // replace with your LIFF ID
-  //       await liff.ready;
-  //       callApiLog(JSON.stringify(liff));
-  //       if (!liff.isLoggedIn()) {
-  //         liff.login();
-  //       }
-
-  //       if (!liff.isInClient()) {
-  //         // setError('กรุณาเปิดผ่านแอป LINE เท่านั้นเพื่อสแกน QR Code')
-  //         callApiLog("กรุณาเปิดผ่านแอป LINE เท่านั้นเพื่อสแกน QR Code");
-  //         return;
-  //       }
-
-  //       setLiffObject(liff);
-  //     } catch (err) {
-  //       callApiLog("กรุณาเปิดผ่านแอป LINE เท่านั้นเพื่อสแกน QR Code");
-  //     }
-  //   };
-  //   initLiff();
-  // }, []);
-
   useEffect(() => {
-
     // callApiLog("ScanQRPage => useEffect => liffObject");
 
     // callApiLog(JSON.stringify(liffObject));
@@ -86,7 +60,6 @@ export default function ScanQRComponent({ gotoPage }) {
         } else {
           alert("Can not open camera: " + error.message);
         }
-
       }
     };
     if (!_.isEmpty(liffObject) && !processing) {
@@ -105,7 +78,7 @@ export default function ScanQRComponent({ gotoPage }) {
         let _result = await doChexIn({
           variables: { lineToken: lineToken, shopId: data },
         });
-        // callApiLog("ChexIn result =" + JSON.stringify(_result));
+        await callApiLog("ChexIn result =" + JSON.stringify(_result));
 
         if (!_result?.data?.chexPoint.result.success) {
           alert(_result?.data?.chexPoint.result.message);
@@ -114,14 +87,14 @@ export default function ScanQRComponent({ gotoPage }) {
         }
         if (_result?.data?.chexPoint) {
           let _item = _result.data.chexPoint.item;
+          await callApiLog("user item=" + JSON.stringify(_item));
           setPointDataList(_item);
           alert("ChexIn Completed!");
           gotoPage("main");
           return;
         }
       } catch (e) {
-        // await callApiLog("ChexIn Error = " + JSON.stringify(e));
-
+        await callApiLog("ChexIn Error = " + JSON.stringify(e));
       }
       //let dataPointName = data.replace(/\s/g, "").toLowerCase();
 
