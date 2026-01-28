@@ -65,6 +65,7 @@ const GET_USER_INFO = gql`
       items {
         lineName
         registerDate
+        tokens
         address {
           ...LanguagesFragment
         }
@@ -95,6 +96,7 @@ const CHEX_POINT = gql`
     chexPoint(lineToken: $lineToken, shopId: $shopId) {
       shopId
       item {
+        tokens
         goldStars {
           shopId
           shopName
