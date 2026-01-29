@@ -9,6 +9,7 @@ const ShopContext = createContext();
 export function ShopContextProvider({ children }) {
   const [shopList, setShopList] = useState([]);
   const [selectedShop, setSelectedShop] = useState(null);
+  const [selectedShopList, setSelectShopList] = useState([]);
 
   const selectShop = (newObject) => {
     setSelectedShop(newObject);

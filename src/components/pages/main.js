@@ -2,12 +2,11 @@ import { useState, useEffect } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
 
 import Image from "next/image";
-// import { usePointContext } from "@/context/pointContext";
-// import { dummyMyPoint, shopListArray } from "@/tools/dummyData";
 import { callApiLog } from "@/tools/apiLog";
 import UserMainPageComponent from "../user/userInfo";
 import ShopItemDetailComponent from "../shop/shopItemDetail";
 import ShopItemShortDetailComponent from "../shop/shopItemShortDetail";
+import HorizontalSliderMenu from "../sliderMenu/slidermenu";
 import { useShopContext } from "@/context/shopContext";
 import { useUserContext } from "@/context/userContext";
 import StarTable from "../table/starTable";
@@ -23,9 +22,19 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
+const shopCategoryMenuList = [
+  "ทุกร้าน",
+  "ร้านอาหาร/เครื่องดื่ม",
+  "โรงแรม/ที่พัก",
+  "บริการ",
+  "สินค้า",
+  "รถเช่า",
+];
+
 export default function MainComponent({ gotoPage }) {
   const [point, setPoint] = useState(0);
-  // const { pointDataList } = usePointContext();
+  const [activeTab, setActiveTab] = useState(0);
   const { selectShop, shopList, setShopList } = useShopContext();
   const { user } = useUserContext();
   const { data, loading, error } = useQuery(GET_SHOP_LIST);
@@ -59,18 +68,14 @@ export default function MainComponent({ gotoPage }) {
     }
   }, [data, error]);
 
-  //   useEffect(() => {
-  //     if (shopList.length > 0) {
-  // <<<<<<< HEAD
-  //       // console.log("ShopList = ", shopList);
-  // =======
-  //       console.log("ShopList = ", shopList);
-  // >>>>>>> 1d4af4d (init git)
-  //     }
-  //   }, [shopList]);
-
   const onMapClickHandle = () => {
     gotoPage("map");
+  };
+
+  const handleMenuClick = (index) => {
+    setActiveTab(index);
+    console.log("คุณคลิกเมนู:", shopCategoryMenuList[index]);
+    // คุณสามารถใส่ logic เพิ่มเติมตรงนี้ได้ เช่น fetch ข้อมูลใหม่
   };
 
   return (
@@ -84,13 +89,20 @@ export default function MainComponent({ gotoPage }) {
       {/* <div className="flex flex-col w-full"> */}
       <div
         className="bg-blue-200  p-4 text-xl font-bold 
-              row-start-2 flex  border-b border-gray-500 rounded-lg"
+               flex  border-b border-gray-500 rounded-lg"
       >
         <UserMainPageComponent user={user} />
       </div>
+      <div>
+        <HorizontalSliderMenu
+          menus={shopCategoryMenuList}
+          activeTab={activeTab}
+          onClickHandle={handleMenuClick}
+        />
+      </div>
 
       <div
-        className="bg-green-200 mt-4 pt-2 p-1 text-white text-xl font-bold 
+        className="bg-green-200 mt-1 pt-2 p-1 text-white text-xl font-bold 
                border-b border-gray-500 rounded-lg"
       >
         <div className="grid grid-cols-1 gap-3 flex flex-col mx-auto justify-center md:w-4/5">

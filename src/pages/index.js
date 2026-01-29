@@ -80,15 +80,16 @@ export default function Home() {
             setLineToken(idToken);
 
             let _user = await getUserInfo(idToken);
-            // await callApiLog(
-            //   "Home -> useEffect 148 -> call getUserProfile -> user = " +
-            //     JSON.stringify(_user)
-            // );
+            await callApiLog(
+              "Home -> useEffect 148 -> call getUserProfile -> user = " +
+                JSON.stringify(_user)
+            );
             if (_user.lineName) {
               setUser(_user);
               let _pointList = {
                 silverStars: _user.silverStars,
                 goldStars: _user.goldStars,
+                tokens: _user.tokens,
               };
 
               setPointDataList(_pointList);

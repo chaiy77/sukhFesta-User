@@ -51,7 +51,7 @@ export default function UserMainPageComponent({ user }) {
                 <p> Sukh-tokens</p>
               </div>
               <div className="px-2 ">
-                {pointList?.silverStars ? pointList?.silverStars.length : 0}
+                {pointList?.tokens ? pointList?.tokens : 0}
               </div>
               <div>
                 <span className=" ">tokens</span>
