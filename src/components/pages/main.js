@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
+import _ from "lodash";
 
 import Image from "next/image";
 import { callApiLog } from "@/tools/apiLog";
@@ -31,11 +32,25 @@ const shopCategoryMenuList = [
   "สินค้า",
   "รถเช่า",
 ];
+const categoryList = [
+  "none",
+  "food",
+  "hotel",
+  "service",
+  "consumer",
+  "carrent",
+];
 
 export default function MainComponent({ gotoPage }) {
   const [point, setPoint] = useState(0);
   const [activeTab, setActiveTab] = useState(0);
-  const { selectShop, shopList, setShopList } = useShopContext();
+  const {
+    selectShop,
+    shopList,
+    setShopList,
+    selectedShopList,
+    setSelectShopList,
+  } = useShopContext();
   const { user } = useUserContext();
   const { data, loading, error } = useQuery(GET_SHOP_LIST);
 
@@ -44,11 +59,9 @@ export default function MainComponent({ gotoPage }) {
   //   callApiLog("Main => PointDataList =>" + JSON.stringify(pointDataList));
   // }, [pointDataList]);
 
-  useEffect(() => {
-    // console.log("main start");
-
-    selectShop(null);
-  }, []);
+  // useEffect(() => {
+  //   selectShop(null);
+  // }, []);
 
   useEffect(() => {
     // console.log(data);
@@ -62,6 +75,7 @@ export default function MainComponent({ gotoPage }) {
         //   "Gql.Shop.getSohpList -> 62  = " + JSON.stringify(_shopList)
         // );
         setShopList(_shopList);
+        setSelectShopList(_shopList);
       } else {
         // console.log("Gql.Shop.getSohpList error = ", result.message);
       }
@@ -75,7 +89,24 @@ export default function MainComponent({ gotoPage }) {
   const handleMenuClick = (index) => {
     setActiveTab(index);
     console.log("คุณคลิกเมนู:", shopCategoryMenuList[index]);
-    // คุณสามารถใส่ logic เพิ่มเติมตรงนี้ได้ เช่น fetch ข้อมูลใหม่
+    console.log(categoryList[index]);
+
+    if (categoryList[index] == "none") {
+      setSelectShopList(shopList);
+    } else {
+      const _selectShop = _.filter(shopList, (shop, key) => {
+        return shop.category == categoryList[index];
+      });
+
+      console.log(_selectShop);
+      setSelectShopList(_selectShop);
+
+      //    selectedShopList()
+    }
+    // const _selectShop = _.pickBy(
+    //   shopList,
+    //   (shop, key) => shop.category == categoryList[index]
+    // );
   };
 
   return (
@@ -108,7 +139,7 @@ export default function MainComponent({ gotoPage }) {
         <div className="grid grid-cols-1 gap-3 flex flex-col mx-auto justify-center md:w-4/5">
           {/* {shopListArray.map((shop) => { */}
 
-          {shopList.map((shop, index) => {
+          {selectedShopList.map((shop, index) => {
             // console.log(shop);
             if (shop.status == "active") {
               return (

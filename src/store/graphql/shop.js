@@ -30,6 +30,7 @@ const GET_SHOP_LIST = gql`
         imageURL
         telephone
         status
+        category
       }
     }
   }

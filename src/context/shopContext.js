@@ -15,9 +15,21 @@ export function ShopContextProvider({ children }) {
     setSelectedShop(newObject);
   };
 
+  // const setShopList = (newObject) => {
+  //   setAllShopList(newObject);
+  //   setSelectShopList(newObject);
+  // };
+
   return (
     <ShopContext.Provider
-      value={{ selectedShop, selectShop, shopList, setShopList }}
+      value={{
+        selectedShop,
+        selectShop,
+        shopList,
+        setShopList,
+        selectedShopList,
+        setSelectShopList,
+      }}
     >
       {children}
     </ShopContext.Provider>

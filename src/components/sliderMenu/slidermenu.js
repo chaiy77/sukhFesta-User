@@ -10,6 +10,7 @@ export default function HorizontalSliderMenu({
           <li key={index} className="flex-none">
             <button
               onClick={() => onClickHandle(index)} // ✅ เรียกใช้ฟังก์ชันที่ส่งมาจากแม่
+              disabled={activeTab === index}
               className={`px-1 py-1  text-sm font-medium transition-all
                 ${
                   activeTab === index
