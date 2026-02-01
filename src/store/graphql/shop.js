@@ -18,6 +18,15 @@ const GET_SHOP_LIST = gql`
         shopName {
           ...LanguagesFragment
         }
+        tambol {
+          ...LanguagesFragment
+        }
+        amphur {
+          ...LanguagesFragment
+        }
+        province {
+          ...LanguagesFragment
+        }
 
         address {
           ...LanguagesFragment

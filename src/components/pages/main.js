@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
 import _ from "lodash";
-
+import AreaSelect from "@/components/select/areaSelect";
+import SelectAreaPopover from "../select/areaPopover";
 import Image from "next/image";
 import { callApiLog } from "@/tools/apiLog";
 import UserMainPageComponent from "../user/userInfo";
@@ -32,17 +33,12 @@ const shopCategoryMenuList = [
   "สินค้า",
   "รถเช่า",
 ];
-const categoryList = [
-  "none",
-  "food",
-  "hotel",
-  "service",
-  "consumer",
-  "carrent",
-];
+const categoryList = ["all", "food", "hotel", "service", "consumer", "carrent"];
 
 export default function MainComponent({ gotoPage }) {
   const [point, setPoint] = useState(0);
+  const [shopCategory, setShopCategory] = useState("all");
+  const [shopArea, setShopArea] = useState("all");
   const [activeTab, setActiveTab] = useState(0);
   const {
     selectShop,
@@ -58,10 +54,6 @@ export default function MainComponent({ gotoPage }) {
   //   setPoint(pointDataList.length);
   //   callApiLog("Main => PointDataList =>" + JSON.stringify(pointDataList));
   // }, [pointDataList]);
-
-  // useEffect(() => {
-  //   selectShop(null);
-  // }, []);
 
   useEffect(() => {
     // console.log(data);
@@ -82,31 +74,47 @@ export default function MainComponent({ gotoPage }) {
     }
   }, [data, error]);
 
+  useEffect(() => {
+    let _selectShop = shopList;
+    if (shopArea || shopCategory) {
+      if (shopArea != "all") {
+        _selectShop = _.filter(_selectShop, (shop) => {
+          return _.get(shop, "amphur.en") === shopArea;
+        });
+      }
+      if (shopCategory != "all") {
+        _selectShop = _.filter(_selectShop, (shop) => {
+          return shop.category === shopCategory;
+        });
+      }
+    }
+    // console.log(_selectShop);
+    setSelectShopList(_selectShop);
+  }, [shopArea, shopCategory]);
+
   const onMapClickHandle = () => {
     gotoPage("map");
   };
 
   const handleMenuClick = (index) => {
     setActiveTab(index);
-    console.log("คุณคลิกเมนู:", shopCategoryMenuList[index]);
-    console.log(categoryList[index]);
+    setShopCategory(categoryList[index]);
+    // console.log("คุณคลิกเมนู:", shopCategoryMenuList[index]);
+    // console.log(categoryList[index]);
 
-    if (categoryList[index] == "none") {
-      setSelectShopList(shopList);
-    } else {
-      const _selectShop = _.filter(shopList, (shop, key) => {
-        return shop.category == categoryList[index];
-      });
+    // if (categoryList[index] == "none") {
+    //   setSelectShopList(shopList);
+    // } else {
+    //   const _selectShop = _.filter(shopList, (shop, key) => {
+    //     return shop.category == categoryList[index];
+    //   });
 
-      console.log(_selectShop);
-      setSelectShopList(_selectShop);
-
-      //    selectedShopList()
-    }
-    // const _selectShop = _.pickBy(
-    //   shopList,
-    //   (shop, key) => shop.category == categoryList[index]
-    // );
+    //   console.log(_selectShop);
+    //   setSelectShopList(_selectShop);
+    // }
+  };
+  const handleAreaSelect = (e) => {
+    setShopArea(e);
   };
 
   return (
@@ -124,12 +132,17 @@ export default function MainComponent({ gotoPage }) {
       >
         <UserMainPageComponent user={user} />
       </div>
-      <div>
-        <HorizontalSliderMenu
-          menus={shopCategoryMenuList}
-          activeTab={activeTab}
-          onClickHandle={handleMenuClick}
-        />
+      <div className="flex flex-col">
+        <div className="w-full">
+          <HorizontalSliderMenu
+            menus={shopCategoryMenuList}
+            activeTab={activeTab}
+            onClickHandle={handleMenuClick}
+          />
+        </div>
+        <div className="z-[99] px-4 w-1/2 items-center ">
+          <SelectAreaPopover onSelect={handleAreaSelect} />
+        </div>
       </div>
 
       <div

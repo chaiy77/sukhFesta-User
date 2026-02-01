@@ -74,8 +74,6 @@ export default function Home() {
           const idToken = liff.getIDToken();
           // await callApiLog("Home => 101  => ID Token 1 = " + idToken);
           if (!_.isEmpty(idToken)) {
-            // console.log(idToken);
-
             setLiffObject(liff);
             setLineToken(idToken);
 
