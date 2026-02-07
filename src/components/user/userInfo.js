@@ -2,7 +2,6 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { callApiLog } from "@/tools/apiLog";
-import { usePointContext } from "@/context/pointContext";
 import {
   ScanLine,
   TrendingUp,
@@ -17,10 +16,11 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import MyQRComponent from "@/components/user/myQR";
+import PointComponent from "@/components/points/pointComponent";
 
 export default function UserMainPageComponent({ user }) {
-  const [pointList, setPointList] = useState([]);
-  const { pointDataList } = usePointContext();
+  // const [pointList, setPointList] = useState([]);
+  // const { pointData } = usePointContext();
 
   //--- for slide component
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -29,14 +29,14 @@ export default function UserMainPageComponent({ user }) {
 
   //--- for slide component
 
-  useEffect(() => {
-    // callApiLog(
-    //   "userInfo => useEffect => pointDataList = " +
-    //     JSON.stringify(pointDataList)
-    // );
+  // useEffect(() => {
+  //   // callApiLog(
+  //   //   "userInfo => useEffect => pointDataList = " +
+  //   //     JSON.stringify(pointDataList)
+  //   // );
 
-    setPointList(pointDataList);
-  }, [pointDataList]);
+  //   setPointList(pointData);
+  // }, [pointData]);
 
   const UserDetailCompoent = () => {
     return (
@@ -46,17 +46,7 @@ export default function UserMainPageComponent({ user }) {
             <div className="sm:text-xl">
               <div className="">{user.lineName}</div>
             </div>
-            <div className="flex flex-row w-full mb-1 text-sm sm:text-md">
-              <div className="px-2">
-                <p> Sukh-tokens</p>
-              </div>
-              <div className="px-2 ">
-                {pointList?.tokens ? pointList?.tokens : 0}
-              </div>
-              <div>
-                <span className=" ">tokens</span>
-              </div>
-            </div>
+            <PointComponent />
           </div>
         </div>
         <div className="flex justify-items-end w-full">
@@ -121,27 +111,27 @@ export default function UserMainPageComponent({ user }) {
     );
   };
 
-  const UserQRComponent = () => {
-    return (
-      <div className="flex flex-col w-full items-center gap-2">
-        <div className="flex px-4">
-          <MyQRComponent />
-        </div>
-        <div className="flex  my-4">
-          <button
-            type="button"
-            className=" w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-lg px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-            onClick={() => {
-              setCurrentSlide(0);
-              window.location.reload();
-            }}
-          >
-            Back
-          </button>
-        </div>
-      </div>
-    );
-  };
+  // const UserQRComponent = () => {
+  //   return (
+  //     <div className="flex flex-col w-full items-center gap-2">
+  //       <div className="flex px-4">
+  //         <MyQRComponent />
+  //       </div>
+  //       <div className="flex  my-4">
+  //         <button
+  //           type="button"
+  //           className=" w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-lg px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+  //           onClick={() => {
+  //             setCurrentSlide(0);
+  //             window.location.reload();
+  //           }}
+  //         >
+  //           Back
+  //         </button>
+  //       </div>
+  //     </div>
+  //   );
+  // };
 
   if (currentSlide == 0) {
     return (
@@ -152,7 +142,7 @@ export default function UserMainPageComponent({ user }) {
   } else {
     return (
       <div className="flex flex-col items-center justify-center w-full">
-        <UserQRComponent />
+        <MyQRComponent setCurrentSlide={() => setCurrentSlide(0)} />
       </div>
     );
   }

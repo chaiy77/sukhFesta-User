@@ -9,7 +9,7 @@ const UserContext = createContext();
 export function UserContextProvider({ children }) {
   const [user, setUser] = useState(null);
   const [liffObject, setLiffObject] = useState(null);
-  const [lineToken, setLineToken] = useState(null);
+  // const [lineToken, setLineToken] = useState(null);
   const [isLogin, setLogin] = useState(false);
 
   return (
@@ -19,8 +19,8 @@ export function UserContextProvider({ children }) {
         setUser,
         liffObject,
         setLiffObject,
-        lineToken,
-        setLineToken,
+        // lineToken,
+        // setLineToken,
       }}
     >
       {children}

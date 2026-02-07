@@ -7,6 +7,7 @@ import MainComponent from "@/components/pages/main";
 import ScanQRComponent from "@/components/pages/scanqr";
 import MapComponent from "@/components/pages/map";
 import RegisterPageComponent from "@/components/pages/register";
+import HistoryPageComponent from "@/components/pages/history";
 import CircularWaitingComponent from "@/components/waiting/circular";
 import ErrorPageComponent from "@/components/pages/errorPage";
 import { useUserContext } from "@/context/userContext";
@@ -44,15 +45,15 @@ export default function Home() {
   const { user, setUser, setLiffObject, lineToken, setLineToken, liffObject } =
     useUserContext();
 
-  const { setPointDataList } = usePointContext();
+  const { setPointData } = usePointContext();
 
   const [doGetUserInfo, { data, errors }] = useLazyQuery(GET_USER_INFO);
   const navItems = [
     { name: "Home", icon: HomeIcon, page: "main" },
     { name: "Map", icon: MapPin, page: "map" },
     { name: "Scan", icon: ScanLine, page: "scanQR" },
-    { name: "History", icon: History, page: "" },
-    { name: "Profile", icon: UserIcon, page: "" },
+    { name: "History", icon: History, page: "history" },
+    //{ name: "Profile", icon: UserIcon, page: "" },
   ];
 
   useEffect(() => {
@@ -64,6 +65,7 @@ export default function Home() {
         // console.log("l_id = ", process.env.NEXT_PUBLIC_LIFF_ID);
 
         await liff.ready;
+
         if (!liff.isLoggedIn()) {
           liff.login();
         }
@@ -75,7 +77,7 @@ export default function Home() {
           // await callApiLog("Home => 101  => ID Token 1 = " + idToken);
           if (!_.isEmpty(idToken)) {
             setLiffObject(liff);
-            setLineToken(idToken);
+            // setLineToken(idToken);
 
             let _user = await getUserInfo(idToken);
             await callApiLog(
@@ -84,13 +86,13 @@ export default function Home() {
             );
             if (_user.lineName) {
               setUser(_user);
-              let _pointList = {
+              let _points = {
                 silverStars: _user.silverStars,
                 goldStars: _user.goldStars,
                 tokens: _user.tokens,
               };
 
-              setPointDataList(_pointList);
+              setPointData(_points);
 
               // await callApiLog(
               //   "Home -> useEffect 151 -> call getUserProfile -> goto Main page"
@@ -161,10 +163,7 @@ export default function Home() {
     let _result = await doGetUserInfo({
       variables: { lineToken: lineToken },
     });
-    // 'getUserResult {"data":{"getUserInfo":
-    // {"__typename":"UserInfoResult",
-    // "result":{"__typename":"Result","success":true,"message":null},
-    // "items":{"__typename":"User","lineName":"chaiy","registerDate":1760542384927,"address":null,"tambol":null,"distric":null,"province":null,"zipcode":null,"silverStars":[],"goldStars":[]}}}}'
+
     // await callApiLog("getUserResult " + JSON.stringify(_result));
     let result = _result.data.getUserInfo.result;
     let _user = _result.data.getUserInfo.items;
@@ -217,6 +216,15 @@ export default function Home() {
         />
       );
     }
+    if (page == "history") {
+      return (
+        <HistoryPageComponent
+          gotoPage={(page) => {
+            gotoPage(page);
+          }}
+        />
+      );
+    }
     if (page == "map") {
       return (
         <MapComponent
@@ -244,12 +252,12 @@ export default function Home() {
       <PageComponent />
       <nav className="fixed bottom-0 left-0 right-0 bg-white/95  border-t border-gray-200 z-99">
         <div className="max-w-7xl mx-auto px-2">
-          <div className="grid grid-cols-5 gap-1 py-2">
+          <div className="grid grid-cols-4 gap-1 py-2 items-center  ">
             {navItems.map((item, index) => {
-              const isActive = true;
               return (
                 <div
                   key={index}
+                  className="flex flex-col items-center justify-center"
                   onClick={() => {
                     let _page = item.page;
                     // console.log(_page);
@@ -261,7 +269,7 @@ export default function Home() {
                   }}
                 >
                   <item.icon className="w-5 h-5" />
-                  <span className="text-xs font-medium">{item.name}</span>
+                  <span className="pt-2 text-xs font-medium">{item.name}</span>
                 </div>
               );
             })}

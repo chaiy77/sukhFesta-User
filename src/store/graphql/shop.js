@@ -40,6 +40,7 @@ const GET_SHOP_LIST = gql`
         telephone
         status
         category
+        reward
       }
     }
   }

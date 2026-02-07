@@ -8,16 +8,17 @@ const PointContext = createContext();
 
 // Create Provider
 export function PointContextProvider({ children }) {
-  const [pointDataList, setMyPointDataList] = useState({});
+  const [pointData, setMyPointData] = useState({});
 
-  const setPointDataList = (newObject) => {
-    setMyPointDataList((prevArray) => {
+  const setPointData = (newObject) => {
+    callApiLog("PointContext => new pointData = " + JSON.stringify(newObject));
+    setMyPointData(() => {
       return newObject;
     }); // Immutably add object
     // setMyPointDataList(newObject);
   };
   return (
-    <PointContext.Provider value={{ pointDataList, setPointDataList }}>
+    <PointContext.Provider value={{ pointData, setPointData }}>
       {children}
     </PointContext.Provider>
   );

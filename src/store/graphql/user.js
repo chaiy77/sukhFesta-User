@@ -63,6 +63,7 @@ const GET_USER_INFO = gql`
         message
       }
       items {
+        id
         lineName
         registerDate
         tokens
@@ -92,8 +93,9 @@ const GET_USER_INFO = gql`
   ${LANGUAGE_FRAGMENT}
 `;
 const CHEX_POINT = gql`
-  mutation chexPoint($lineToken: String, $shopId: String) {
-    chexPoint(lineToken: $lineToken, shopId: $shopId) {
+  mutation chexPoint($userId: String, $shopId: String) {
+    chexPoint(userId: $userId, shopId: $shopId) {
+      userId
       shopId
       item {
         tokens
@@ -112,10 +114,42 @@ const CHEX_POINT = gql`
       }
       result {
         success
+        errorCode
         message
       }
     }
   }
 `;
 
-export { REGISTER_USER, GET_USER_INFO, CHEX_POINT };
+const ON_CHEXIN_SUBSCRIPTION = gql`
+  subscription onUserChexIn($userId: String) {
+    onUserChexIn(userId: $userId) {
+      result {
+        errorCode
+        success
+        message
+      }
+    }
+  }
+`;
+
+const ON_REDEEM_SUBSCRIPTION = gql`
+  subscription onUserRedeem($userId: String) {
+    onUserRedeem(userId: $userId) {
+      userId
+      result {
+        errorCode
+        success
+        message
+      }
+    }
+  }
+`;
+
+export {
+  REGISTER_USER,
+  GET_USER_INFO,
+  CHEX_POINT,
+  ON_REDEEM_SUBSCRIPTION,
+  ON_CHEXIN_SUBSCRIPTION,
+};

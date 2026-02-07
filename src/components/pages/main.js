@@ -1,7 +1,6 @@
+import _ from "lodash";
 import { useState, useEffect } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
-import _ from "lodash";
-import AreaSelect from "@/components/select/areaSelect";
 import SelectAreaPopover from "../select/areaPopover";
 import Image from "next/image";
 import { callApiLog } from "@/tools/apiLog";
@@ -11,7 +10,6 @@ import ShopItemShortDetailComponent from "../shop/shopItemShortDetail";
 import HorizontalSliderMenu from "../sliderMenu/slidermenu";
 import { useShopContext } from "@/context/shopContext";
 import { useUserContext } from "@/context/userContext";
-import StarTable from "../table/starTable";
 import { GET_SHOP_LIST } from "@/store/graphql/shop";
 import { useQuery } from "@apollo/client/react";
 

@@ -26,18 +26,14 @@ export default function MapComponent() {
     selectShop(_shop);
   };
 
-  // useEffect(() => {
-  //   if()
-  //   console.log("Map => selected shop = ", selectedShop);
-  // }, [selectedShop]);
   return (
     <div
       className="grid 
-      grid-rows-[10px_minmax(min-content,_500px)_auto] gap-2 min-h-screen "
+      grid-rows-[10px_minmax(min-content,_300px)_auto] gap-2 min-h-screen "
     >
       {/* Map View */}
       <div
-        className="bg-blue-300 p-4 text-white text-xl font-bold 
+        className="bg-blue-300 p-2 text-white text-xl font-bold 
               row-start-2 flex items-center justify-center border-b border-gray-500"
       >
         <DynamicMap shops={shopList} selectedShop={selectedShop} />
@@ -45,16 +41,14 @@ export default function MapComponent() {
 
       {/*Shop List */}
       <div
-        className="bg-blue-300 p-4 text-white text-xl font-bold 
+        className="bg-blue-300 p-2 sm:p-4 text-white text-xl font-bold 
               row-start-3 flex items-center justify-center border-b border-blue-500"
       >
-        <div className="grid grid-cols-1 gap-3 flex flex-col mx-auto justify-center md:w-4/5">
-
+        <div className="grid grid-cols-1 gap-3 flex flex-col mx-auto justify-center w-full md:w-4/5">
           {shopList.map((shop, index) => {
             return (
               <ShopItemDetailComponent
                 key={index}
-
                 shop={shop}
                 onShopClick={(shop) => onShopClick(shop)}
                 selectedShop={selectedShop}

@@ -42,7 +42,7 @@ export default function SelectAreaPopover({ onSelect }) {
           aria-expanded={open}
           className="w-full h-[45px] p-0 flex justify-start border-none shadow-none hover:bg-gray-100"
         >
-          <div className="flex flex-row w-full ">
+          <div className="flex flex-row w-full text-gray-500 ">
             <div className="items-center "> {label}</div>
             <div className="items-center py-1 px-4">
               <ChevronDown />

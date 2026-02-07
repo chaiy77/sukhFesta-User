@@ -39,51 +39,109 @@ export default function ShopItemDetailComponent({
     service: "bg-green-100 text-green-700 border-green-200",
   };
 
+  const openGoogleMapHandle = (lat, lng) => {
+    const url = `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
+
+    // สำคัญมาก: ต้องใช้ external: true เพื่อให้ LINE ยอมปล่อยให้ OS เปิดแอปภายนอก
+    console.log(url);
+    liff.openWindow({
+      url: url,
+      external: true,
+    });
+  };
   return (
     <Card
       key={shop.id}
       className="cursor-pointer hover:shadow-lg transition-all duration-200 hover:scale-[1.02]"
     >
-      <CardContent className="p-4">
+      <CardContent className="p-2 sm:p-4">
         <div className="space-y-3">
           {/* Header */}
-          <div className="flex-1 flex flex-row">
-            <div className="flex items-start justify-center gap-3 px-4">
-              {shop.imageURL ? (
-                <div className="w-40 h-40 rounded-lg overflow-hidden flex-shrink-0 bg-gray-100">
-                  <img
-                    src={shop.imageURL}
-                    alt={shop.shopName.en}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              ) : (
-                <div className="w-40 h-40 rounded-lg bg-gradient-to-br from-indigo-100 to-purple-100 flex items-center justify-center flex-shrink-0">
-                  <Store className="w-8 h-8 text-indigo-600" />
-                </div>
-              )}
-            </div>
-            <div className="flex flex-col">
-              <div className="flex flex-row pb-4">
-                <h4 className="font-bold text-gray-900 text-lg mb-1 pr-4">
+          <div className="flex flex-col">
+            <div className="flex flex-row">
+              <div className="flex items-start justify-center gap-3 px-4">
+                {shop.imageURL ? (
+                  <div className="w-20 h-20 sm:w-40 sm:h-40 rounded-lg overflow-hidden flex-shrink-0 bg-gray-100">
+                    <img
+                      src={shop.imageURL}
+                      alt={shop.shopName.en}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                ) : (
+                  <div className="w-20 h-20 sm:w-40 sm:h-40 rounded-lg bg-gradient-to-br from-indigo-100 to-purple-100 flex items-center justify-center flex-shrink-0">
+                    <Store className="w-8 h-8 text-indigo-600" />
+                  </div>
+                )}
+              </div>
+              <div className="flex flex-col w-full">
+                <div className="text-gray-900 text-md sm:text-lg  mb-1 pr-4">
                   {shop.shopName ? (
                     <div>{shop.shopName.th}</div>
                   ) : (
                     <div>shop name</div>
                   )}
-                </h4>
-
-                <Badge
-                  variant=" secondary"
-                  className={`${categoryColors[shop.category]} border text-xs`}
-                >
+                </div>
+                <div className="text-sm text-gray-600">
                   {shop.category ? (
                     <div>{shop.category}</div>
                   ) : (
                     <div> category </div>
                   )}
-                </Badge>
+                </div>
 
+                <div className="flex flex-col">
+                  {shop?.location?.latitude && shop?.location?.longitude ? (
+                    <div>
+                      <div className="flex flex-row items-center">
+                        <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0 text-gray-400" />
+                        <div className="text-[8px]  px-2 sm:p-4 sm:text-sm text-gray-600">
+                          {shop.location.latitude} , {shop.location.longitude}{" "}
+                        </div>
+                      </div>
+
+                      <div
+                        className="text-[8px] px-4 italic  sm:text-sm text-blue-600"
+                        onClick={() =>
+                          openGoogleMapHandle(
+                            shop.location.latitude,
+                            shop.location.longitude
+                          )
+                        }
+                      >
+                        ... open googlemap
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="flex flex-row items-center">
+                      <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0 text-gray-400" />
+                      <div className="text-[8px] p-2 sm:p-4 sm:text-sm text-gray-600">
+                        {" "}
+                        00.00,00.00
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* <div className="flex flex-row items-center">
+                  <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0 text-gray-400" />
+
+                  {shop.location.latitude && shop.location.longitude ? (
+                    <div className="text-[8px] p-2 sm:p-4 sm:text-sm text-gray-600">
+                      
+                      {shop.location.latitude} , {shop.location.longitude}{" "}
+                    </div>
+                  ) : (
+                    <div className="text-[8px] p-2 sm:p-4 sm:text-sm text-gray-600">
+                      {" "}
+                      00.00,00.00
+                    </div>
+                  )}
+                </div> */}
+              </div>
+            </div>
+            <div className="flex flex-col">
+              {/* <div className="flex flex-row pb-4">
                 <Button
                   variant="ghost"
                   size="icon"
@@ -99,8 +157,8 @@ export default function ShopItemDetailComponent({
                     <ChevronDown className="w-8 h-8 text-gray-400" />
                   )}
                 </Button>
-              </div>
-              <div className="flex items-center gap-1 bg-indigo-50 px-3 py-1 rounded-full">
+              </div> */}
+              {/* <div className="flex items-center gap-1 bg-indigo-50 px-3 py-1 rounded-full">
                 <Navigation className="w-3 h-3 text-indigo-600" />
                 <span className="text-sm font-semibold text-indigo-600">
                   {shop.distance ? (
@@ -109,16 +167,20 @@ export default function ShopItemDetailComponent({
                     <div>00.00 km.</div>
                   )}
                 </span>
-              </div>
+              </div> */}
               {/* Details */}
-              <div className="space-y-2">
-                <div className="flex items-start gap-2 text-sm text-gray-600">
-                  <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0 text-gray-400" />
+              <div className="mx-4 space-y-2">
+                <div className="flex flex-row items-center gap-2  mt-2 text-sm sm:text-md text-gray-600">
+                  <div>{shop.address.th}</div>
+                  <div>ต.{shop.tambol.th}</div>
+                  <div>อ.{shop.amphur.th}</div>
+                  <div>จ.{shop.province.th}</div>
+                  {/*                 
                   {shop.address ? (
                     <div>{shop.address.th}</div>
                   ) : (
                     <div>address </div>
-                  )}
+                  )} */}
                 </div>
 
                 <div className="flex items-center gap-2 text-sm text-gray-600">
@@ -142,8 +204,8 @@ export default function ShopItemDetailComponent({
                     : "max-h-0 opacity-0"
                 }`}
               >
-                *{/* Description */}
-                <div className="pt-space-y-4">
+                {/* Description */}
+                {/* <div className="pt-space-y-4">
                   <p className="text-sm text-gray-600 line-clamp-2 pt-2 border-t">
                     {shop.description ? (
                       <div>{shop.description}</div>
@@ -153,7 +215,7 @@ export default function ShopItemDetailComponent({
                   </p>
                 </div>
                 <div className="pt-4  space-y-4">
-                  {/* Description */}
+              
                   {shop.description && (
                     <div>
                       <h5 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
@@ -162,7 +224,7 @@ export default function ShopItemDetailComponent({
                       </h5>
                     </div>
                   )}
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
