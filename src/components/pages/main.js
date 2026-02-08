@@ -12,16 +12,30 @@ import { useShopContext } from "@/context/shopContext";
 import { useUserContext } from "@/context/userContext";
 import { GET_SHOP_LIST } from "@/store/graphql/shop";
 import { useQuery } from "@apollo/client/react";
+import {
+  Search,
+  MapPin,
+  Star,
+  Clock,
+  Heart,
+  QrCode,
+  User,
+  Trophy,
+  Flame,
+  Gift,
+  Settings,
+  Award,
+} from "lucide-react";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+// const geistSans = Geist({
+//   variable: "--font-geist-sans",
+//   subsets: ["latin"],
+// });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+// const geistMono = Geist_Mono({
+//   variable: "--font-geist-mono",
+//   subsets: ["latin"],
+// });
 
 const shopCategoryMenuList = [
   "ทุกร้าน",
@@ -116,84 +130,78 @@ export default function MainComponent({ gotoPage }) {
   };
 
   return (
-    //[10px_1fr_20px] -> 3 rows = [10px, 1fr , 20px]
-
-    <div
-      // grid grid-cols-1 h-screen border-2 border-black
-      //         grid-rows-[10px_1fr_2fr_10px]
-      className={`${geistSans.className} ${geistMono.className}  h-screen  font-[family-name:var(--font-geist-sans)]`}
-    >
-      {/* <div className="flex flex-col w-full"> */}
-      <div
-        className="bg-blue-200  p-4 text-xl font-bold 
-               flex  border-b border-gray-500 rounded-lg"
-      >
-        <UserMainPageComponent user={user} />
-      </div>
-      <div className="flex flex-col">
-        <div className="w-full">
-          <HorizontalSliderMenu
-            menus={shopCategoryMenuList}
-            activeTab={activeTab}
-            onClickHandle={handleMenuClick}
-          />
-        </div>
-        <div className="z-[99] px-4 w-1/2 items-center ">
-          <SelectAreaPopover onSelect={handleAreaSelect} />
+    <div className="pb-24 lg:pb-8">
+      <div className="bg-primary px-5 pb-5 pt-8 text-primary-foreground lg:px-8 lg:pb-6">
+        <div className="mx-auto max-w-5xl">
+          <UserMainPageComponent user={user} />
         </div>
       </div>
-
-      <div
-        className="bg-green-200 mt-1 pt-2 p-1 text-white text-xl font-bold 
-               border-b border-gray-500 rounded-lg"
-      >
-        <div className="grid grid-cols-1 gap-3 flex flex-col mx-auto justify-center md:w-4/5">
-          {/* {shopListArray.map((shop) => { */}
-
-          {selectedShopList.map((shop, index) => {
-            // console.log(shop);
-            if (shop.status == "active") {
-              return (
-                <div key={index}>
-                  <ShopItemShortDetailComponent
-                    shop={shop}
-                    onMapClick={onMapClickHandle}
-                  />
-                </div>
-              );
-            }
-          })}
-        </div>
+      <div className="flex gap-2 overflow-x-auto pb-1">
+        <HorizontalSliderMenu
+          menus={shopCategoryMenuList}
+          activeTab={activeTab}
+          onClickHandle={handleMenuClick}
+        />
       </div>
-      {/* <div
-            className={
-              point > 99
-                ? "mx-auto  text-[#55FFDD] text-[8rem]"
-                : "mx-auto  text-[#55FFDD] text-[10rem]"
-            }
-          >
-            {point}
-          </div>
-          <div>
-            <StarTable />
-          </div> */}
-      {/* </div> */}
-
-      {/* <div className="row-start-4 z-99 w-full flex gap-[24px] flex-wrap items-center justify-center">
-        <div className="flex w-full items-center justify-center">
-          {" "}
-          <button
-            type="button"
-            className=" w-11/12 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-lg px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-            onClick={() => {
-              console.log("test");
-              gotoPage("scanQR");
-            }}
-          >
-            Check Point
-          </button>
-        </div>
-      </div> */}
+      <div className="z-[99] px-4 w-1/2 items-center ">
+        <SelectAreaPopover onSelect={handleAreaSelect} />
+      </div>
+      <div className="mt-3 grid grid-cols-1 gap-2 px-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-3 lg:px-8">
+        {selectedShopList.map((shop, index) => {
+          // console.log(shop);
+          if (shop.status == "active") {
+            return (
+              <div key={index}>
+                <ShopItemShortDetailComponent
+                  shop={shop}
+                  onMapClick={onMapClickHandle}
+                />
+              </div>
+            );
+          }
+        })}
+      </div>
     </div>
+    // <div className={`  h-screen  font-[family-name:var(--font-geist-sans)]`}>
+    //   <div
+    //     className="bg-blue-200  p-4 text-xl font-bold
+    //            flex  border-b border-gray-500 rounded-lg"
+    //   >
+    //     <UserMainPageComponent user={user} />
+    //   </div>
+    //   <div className="flex flex-col">
+    //     <div className="w-full">
+    //       <HorizontalSliderMenu
+    //         menus={shopCategoryMenuList}
+    //         activeTab={activeTab}
+    //         onClickHandle={handleMenuClick}
+    //       />
+    //     </div>
+    //     <div className="z-[99] px-4 w-1/2 items-center ">
+    //       <SelectAreaPopover onSelect={handleAreaSelect} />
+    //     </div>
+    //   </div>
+
+    //   <div
+    //     className="bg-green-200 mt-1 pt-2 p-1 text-white text-xl font-bold
+    //            border-b border-gray-500 rounded-lg"
+    //   >
+    //     <div className="grid grid-cols-1 gap-3 flex flex-col mx-auto justify-center md:w-4/5">
+    //       {selectedShopList.map((shop, index) => {
+    //         // console.log(shop);
+    //         if (shop.status == "active") {
+    //           return (
+    //             <div key={index}>
+    //               <ShopItemShortDetailComponent
+    //                 shop={shop}
+    //                 onMapClick={onMapClickHandle}
+    //               />
+    //             </div>
+    //           );
+    //         }
+    //       })}
+    //     </div>
+    //   </div>
+    // </div>
   );
 }

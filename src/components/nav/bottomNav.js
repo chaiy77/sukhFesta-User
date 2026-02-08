@@ -6,7 +6,7 @@ import { Home as HomeIcon, QrCode, MapPin, Map } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { callApiLog } from "@/tools/apiLog";
 const navItems = [
-  { name: "Home", icon: HomeIcon, page: "main", id: "home" },
+  { name: "Home", icon: HomeIcon, page: "main", id: "main" },
   { name: "Scan", icon: QrCode, page: "scanQR", id: "scanQR" },
   { name: "Map", icon: Map, page: "map", id: "map" },
 ];
