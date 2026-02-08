@@ -22,14 +22,6 @@ import {
 } from "lucide-react";
 
 export default function ShopItemShortDetailComponent({ shop, onMapClick }) {
-  const categoryColors = {
-    restaurant: "bg-orange-100 text-orange-700 border-orange-200",
-    cafe: "bg-amber-100 text-amber-700 border-amber-200",
-    retail: "bg-blue-100 text-blue-700 border-blue-200",
-    entertainment: "bg-purple-100 text-purple-700 border-purple-200",
-    service: "bg-green-100 text-green-700 border-green-200",
-  };
-
   const { selectShop } = useShopContext();
 
   return (

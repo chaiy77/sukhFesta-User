@@ -246,11 +246,11 @@ export default function Home() {
 
   return (
     <div className="flex min-h-dvh bg-background">
-      <main className="flex-1 lg:ml-64">
+      <div className="flex-1  min-w-0  lg:ml-64">
         <div className="h-dvh overflow-y-auto">
           <PageComponent />
         </div>
-      </main>
+      </div>
       <BottomNav activeTab={activeTab} onTabChange={gotoPage} />
       {/* <nav className="fixed bottom-0 left-0 right-0 bg-white/95  border-t border-gray-200 z-99">
         <div className="max-w-7xl mx-auto px-2">

@@ -1,7 +1,7 @@
 "use client";
 
 import { usePointContext } from "@/context/pointContext";
-import { point } from "leaflet";
+
 import { Flame } from "lucide-react";
 
 const PointComponent = () => {

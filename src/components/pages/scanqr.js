@@ -111,7 +111,9 @@ export default function ScanQRComponent({ gotoPage }) {
   };
 
   const alertClickHandle = () => {
-    setPointData(newPointItem.current);
+    if (newPointItem.current) {
+      setPointData(newPointItem.current);
+    }
     setAlertMessage("");
     setShowErrorAlert(false);
     setShowSuccessAlert(false);

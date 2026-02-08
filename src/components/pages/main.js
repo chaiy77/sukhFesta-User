@@ -146,7 +146,7 @@ export default function MainComponent({ gotoPage }) {
       <div className="z-[99] px-4 w-1/2 items-center ">
         <SelectAreaPopover onSelect={handleAreaSelect} />
       </div>
-      <div className="mt-3 grid grid-cols-1 gap-2 px-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-3 lg:px-8">
+      <div className="mt-3 grid grid-cols-1 gap-2 px-1 sm:px-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-3 lg:px-8">
         {selectedShopList.map((shop, index) => {
           // console.log(shop);
           if (shop.status == "active") {
