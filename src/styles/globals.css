@@ -4,8 +4,64 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
+  /* พื้นหลังและตัวอักษรหลัก */
+  --background: oklch(0.98 0.01 210);
+  --foreground:  oklch(0.25 0.04 250);
+
+  /* Card และ Popover */
+  --card:   oklch(1 0 0);
+  --card-foreground:   oklch(0.25 0.04 250);
+  --popover:  oklch(1 0 0);
+  --popover-foreground:  oklch(0.25 0.04 250);
+
+  /* Primary (สีน้ำเงินเดิม) */
+  --primary:  oklch(0.65 0.22 256);
+  --primary-foreground:  oklch(1 0 0);
+
+  /* Secondary & Muted */
+  --secondary:  oklch(0.92 0.02 214);
+  --secondary-foreground:  oklch(0.25 0.04 250);
+  --muted:  oklch(0.92 0.02 214);
+  --muted-foreground:  oklch(0.55 0.03 240);
+
+  /* Accent (สีส้ม/ทองเดิม) */
+  --accent: oklch( 0.72 0.18 65);
+  --accent-foreground:  oklch(1 0 0);
+
+  /* Destructive (สีแดง) */
+  --destructive:  oklch(0.62 0.22 28);
+  --destructive-foreground: oklch(1 0 0);
+
+  /* UI Elements */
+  --border: oklch(0.92 0.02 214);
+  --input: oklch(0.92 0.02 214);
+  --ring: oklch(0.65 0.22 256);
+
+  /* Charts */
+  --chart-1: oklch(0.65 0.22 256);
+  --chart-2: oklch(0.72 0.18 65);
+  --chart-3: oklch(0.55 0.12 180);
+  --chart-4: oklch(0.35 0.08 220);
+  --chart-5: oklch(0.82 0.12 85);
+
+  /* Sidebar */
+  --sidebar-background: oklch(1 0 0);
+  --sidebar-foreground: oklch(0.25 0.04 250);
+  --sidebar-primary:oklch( 0.65 0.22 256);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.92 0.02 214);
+  --sidebar-accent-foreground: oklch(0.25 0.04 250);
+  --sidebar-border: oklch(0.92 0.02 214);
+  --sidebar-ring: oklch(0.65 0.22 256);
+
+  --radius: 0.75rem;
+}
+
+/* @layer base {
+ :root {
   --background: oklch(100% 0.00011 271.152);
   --foreground: oklch(0.145 0 0);
+ 
   --radius: 0.625rem;
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
@@ -36,7 +92,53 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+} } */
+
+
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
 }
+/* 
+@layer base {
+  :root {
+    --background: 210 40% 98%;
+    --foreground: 217 33% 17%;
+    --card: 0 0% 100%;
+    --card-foreground: 217 33% 17%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 217 33% 17%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 214 32% 91%;
+    --secondary-foreground: 217 33% 17%;
+    --muted: 214 32% 91%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 38 92% 50%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 217 91% 60%;
+    --chart-1: 217 91% 60%;
+    --chart-2: 38 92% 50%;
+    --chart-3: 173 58% 39%;
+    --chart-4: 197 37% 24%;
+    --chart-5: 43 74% 66%;
+    --radius: 0.75rem;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 217 33% 17%;
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 214 32% 91%;
+    --sidebar-accent-foreground: 217 33% 17%;
+    --sidebar-border: 214 32% 91%;
+    --sidebar-ring: 217 91% 60%;
+  }
+} */
 
 @theme inline {
    --color-user-info: #333333;
