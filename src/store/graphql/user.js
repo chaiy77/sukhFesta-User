@@ -137,6 +137,10 @@ const ON_REDEEM_SUBSCRIPTION = gql`
   subscription onUserRedeem($userId: String) {
     onUserRedeem(userId: $userId) {
       userId
+      reward
+      item {
+        tokens
+      }
       result {
         errorCode
         success
