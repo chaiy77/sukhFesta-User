@@ -12,30 +12,6 @@ import { useShopContext } from "@/context/shopContext";
 import { useUserContext } from "@/context/userContext";
 import { GET_SHOP_LIST } from "@/store/graphql/shop";
 import { useQuery } from "@apollo/client/react";
-import {
-  Search,
-  MapPin,
-  Star,
-  Clock,
-  Heart,
-  QrCode,
-  User,
-  Trophy,
-  Flame,
-  Gift,
-  Settings,
-  Award,
-} from "lucide-react";
-
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-// });
-
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
-// });
 
 const shopCategoryMenuList = [
   "ทุกร้าน",
@@ -68,20 +44,15 @@ export default function MainComponent({ gotoPage }) {
   // }, [pointDataList]);
 
   useEffect(() => {
-    // console.log(data);
     if (data) {
       let result = data?.getShopList?.result;
-      // console.log(result);
+
       if (result.success) {
         let _shopList = data?.getShopList.items;
-        // console.log("Gql.Shop.getSohpList = ", _shopList);
-        // callApiLog(
-        //   "Gql.Shop.getSohpList -> 62  = " + JSON.stringify(_shopList)
-        // );
+
         setShopList(_shopList);
         setSelectShopList(_shopList);
       } else {
-        // console.log("Gql.Shop.getSohpList error = ", result.message);
       }
     }
   }, [data, error]);
@@ -111,19 +82,6 @@ export default function MainComponent({ gotoPage }) {
   const handleMenuClick = (index) => {
     setActiveTab(index);
     setShopCategory(categoryList[index]);
-    // console.log("คุณคลิกเมนู:", shopCategoryMenuList[index]);
-    // console.log(categoryList[index]);
-
-    // if (categoryList[index] == "none") {
-    //   setSelectShopList(shopList);
-    // } else {
-    //   const _selectShop = _.filter(shopList, (shop, key) => {
-    //     return shop.category == categoryList[index];
-    //   });
-
-    //   console.log(_selectShop);
-    //   setSelectShopList(_selectShop);
-    // }
   };
   const handleAreaSelect = (e) => {
     setShopArea(e);
@@ -162,46 +120,5 @@ export default function MainComponent({ gotoPage }) {
         })}
       </div>
     </div>
-    // <div className={`  h-screen  font-[family-name:var(--font-geist-sans)]`}>
-    //   <div
-    //     className="bg-blue-200  p-4 text-xl font-bold
-    //            flex  border-b border-gray-500 rounded-lg"
-    //   >
-    //     <UserMainPageComponent user={user} />
-    //   </div>
-    //   <div className="flex flex-col">
-    //     <div className="w-full">
-    //       <HorizontalSliderMenu
-    //         menus={shopCategoryMenuList}
-    //         activeTab={activeTab}
-    //         onClickHandle={handleMenuClick}
-    //       />
-    //     </div>
-    //     <div className="z-[99] px-4 w-1/2 items-center ">
-    //       <SelectAreaPopover onSelect={handleAreaSelect} />
-    //     </div>
-    //   </div>
-
-    //   <div
-    //     className="bg-green-200 mt-1 pt-2 p-1 text-white text-xl font-bold
-    //            border-b border-gray-500 rounded-lg"
-    //   >
-    //     <div className="grid grid-cols-1 gap-3 flex flex-col mx-auto justify-center md:w-4/5">
-    //       {selectedShopList.map((shop, index) => {
-    //         // console.log(shop);
-    //         if (shop.status == "active") {
-    //           return (
-    //             <div key={index}>
-    //               <ShopItemShortDetailComponent
-    //                 shop={shop}
-    //                 onMapClick={onMapClickHandle}
-    //               />
-    //             </div>
-    //           );
-    //         }
-    //       })}
-    //     </div>
-    //   </div>
-    // </div>
   );
 }

@@ -22,12 +22,12 @@ const MyQRComponent = ({ setCurrentSlide }) => {
   const { data, loading, error } = useSubscription(ON_REDEEM_SUBSCRIPTION, {
     variables: { userId: user.id },
     onData: ({ data }) => {
-      callApiLog("subscription REDEEM data = " + JSON.stringify(data));
+      //callApiLog("subscription REDEEM data = " + JSON.stringify(data));
       let result = data.data.onUserRedeem.result;
       if (result.success) {
         const reward = data.data.onUserRedeem.reward;
         const item = data.data.onUserRedeem.item;
-        callApiLog("subscription REDEEM item= " + JSON.stringify(item));
+        //callApiLog("subscription REDEEM item= " + JSON.stringify(item));
         alertMessage.current = reward;
         newTokens.current = item;
         setShowSuccessAlert(true);

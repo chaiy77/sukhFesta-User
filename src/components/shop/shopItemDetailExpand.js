@@ -8,7 +8,6 @@ import {
   Phone,
   Clock,
   Navigation,
-  ExternalLink,
   Store,
 } from "lucide-react";
 
@@ -40,7 +39,7 @@ export default function ShopDetailExpanded({ shop, userLocation, onBack }) {
         userLocation.lat,
         userLocation.lng,
         shop.latitude,
-        shop.longitude
+        shop.longitude,
       )
     : null;
 

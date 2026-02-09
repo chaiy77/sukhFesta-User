@@ -1,32 +1,10 @@
 "use client";
 import Image from "next/image";
-import { dummyMyPoint } from "@/tools/dummyData";
-import { usePointContext } from "@/context/pointContext";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import {
-  ScanLine,
-  TrendingUp,
-  TrendingDown,
-  Sparkles,
-  ArrowRight,
-  MapPin,
-  Store,
-  Coins,
-  Phone,
-  Clock,
-  Navigation,
-  ChevronDown,
-  ChevronUp,
-} from "lucide-react";
-import { useEffect } from "react";
 
-export default function ShopItemDetailComponent({
-  shop,
-  onShopClick,
-  selectedShop,
-}) {
+import { MapPin, Store, Phone, Clock } from "lucide-react";
+
+export default function ShopItemDetailComponent({ shop, selectedShop }) {
   // const shop = {};
   const isExpanded = selectedShop
     ? selectedShop.shopName.en == shop.shopName.en
@@ -96,7 +74,8 @@ export default function ShopItemDetailComponent({
                       <div className="flex flex-row items-center">
                         <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0 text-gray-400" />
                         <div className="text-[8px]  px-2 sm:p-4 sm:text-sm text-gray-600">
-                          {shop.location.latitude} , {shop.location.longitude}{" "}
+                          {shop.location.latitude} ,{" "}
+                          {shop.location.longitude}{" "}
                         </div>
                       </div>
 
@@ -105,7 +84,7 @@ export default function ShopItemDetailComponent({
                         onClick={() =>
                           openGoogleMapHandle(
                             shop.location.latitude,
-                            shop.location.longitude
+                            shop.location.longitude,
                           )
                         }
                       >
@@ -122,52 +101,9 @@ export default function ShopItemDetailComponent({
                     </div>
                   )}
                 </div>
-
-                {/* <div className="flex flex-row items-center">
-                  <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0 text-gray-400" />
-
-                  {shop.location.latitude && shop.location.longitude ? (
-                    <div className="text-[8px] p-2 sm:p-4 sm:text-sm text-gray-600">
-                      
-                      {shop.location.latitude} , {shop.location.longitude}{" "}
-                    </div>
-                  ) : (
-                    <div className="text-[8px] p-2 sm:p-4 sm:text-sm text-gray-600">
-                      {" "}
-                      00.00,00.00
-                    </div>
-                  )}
-                </div> */}
               </div>
             </div>
             <div className="flex flex-col">
-              {/* <div className="flex flex-row pb-4">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="h-8 w-8 items-end"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onShopClick(shop);
-                  }}
-                >
-                  {isExpanded ? (
-                    <ChevronUp className="w-8 h-8 text-indigo-600" />
-                  ) : (
-                    <ChevronDown className="w-8 h-8 text-gray-400" />
-                  )}
-                </Button>
-              </div> */}
-              {/* <div className="flex items-center gap-1 bg-indigo-50 px-3 py-1 rounded-full">
-                <Navigation className="w-3 h-3 text-indigo-600" />
-                <span className="text-sm font-semibold text-indigo-600">
-                  {shop.distance ? (
-                    <div>{shop.distance}</div>
-                  ) : (
-                    <div>00.00 km.</div>
-                  )}
-                </span>
-              </div> */}
               {/* Details */}
               <div className="mx-4 space-y-2">
                 <div className="flex flex-row items-center gap-2  mt-2 text-sm sm:text-md text-gray-600">
@@ -175,12 +111,6 @@ export default function ShopItemDetailComponent({
                   <div>ต.{shop.tambol.th}</div>
                   <div>อ.{shop.amphur.th}</div>
                   <div>จ.{shop.province.th}</div>
-                  {/*                 
-                  {shop.address ? (
-                    <div>{shop.address.th}</div>
-                  ) : (
-                    <div>address </div>
-                  )} */}
                 </div>
 
                 <div className="flex items-center gap-2 text-sm text-gray-600">
@@ -203,106 +133,11 @@ export default function ShopItemDetailComponent({
                     ? "max-h-[1000px] opacity-100 mt-4"
                     : "max-h-0 opacity-0"
                 }`}
-              >
-                {/* Description */}
-                {/* <div className="pt-space-y-4">
-                  <p className="text-sm text-gray-600 line-clamp-2 pt-2 border-t">
-                    {shop.description ? (
-                      <div>{shop.description}</div>
-                    ) : (
-                      <div>description </div>
-                    )}
-                  </p>
-                </div>
-                <div className="pt-4  space-y-4">
-              
-                  {shop.description && (
-                    <div>
-                      <h5 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
-                        <Store className="w-4 h-4 text-indigo-600" />
-                        About
-                      </h5>
-                    </div>
-                  )}
-                </div> */}
-              </div>
+              ></div>
             </div>
           </div>
         </div>
       </CardContent>
     </Card>
   );
-
-  // return (
-  //   <Card
-  //     key={shop.id}
-  //     className="cursor-pointer hover:shadow-lg transition-all duration-200 hover:scale-[1.02]"
-  //     onClick={() => onShopClick(shop)}
-  //   >
-
-  //     <CardContent className="p-4">
-  //       <div className="space-y-3">
-  //         {/* Header */}
-  //         <div className="flex items-start justify-between gap-3">
-  //           <div className="flex-1">
-  //             <h4 className="font-bold text-gray-900 text-lg mb-1">
-  //               SHop Name
-  //             </h4>
-  //             {shop.category &&  (
-  //               <Badge
-  //                 variant="secondary"
-  //                 className={`${categoryColors[shop.category]} border text-xs`}
-  //               >
-  //                 {/* {shop.category} */}
-  //                 Shop Category
-  //               </Badge>
-  //             )}
-  //           </div>
-  //           {shop.distance && (
-  //             <div className="flex items-center gap-1 bg-indigo-50 px-3 py-1 rounded-full">
-  //               <Navigation className="w-3 h-3 text-indigo-600" />
-  //               <span className="text-sm font-semibold text-indigo-600">
-  //                 {/* {shop.distance} km */}
-  //                 0.00 km
-  //               </span>
-  //             </div>
-  //           )}
-  //         </div>
-
-  //         {/* Details */}
-  //         <div className="space-y-2">
-  //           {shop.address && (
-  //             <div className="flex items-start gap-2 text-sm text-gray-600">
-  //               <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0 text-gray-400" />
-  //               {/* <span>{shop.address}</span> */}
-  //               Shop Address
-  //             </div>
-  //           )}
-  //           {shop.phone && (
-  //             <div className="flex items-center gap-2 text-sm text-gray-600">
-  //               <Phone className="w-4 h-4 flex-shrink-0 text-gray-400" />
-  //               {/* <span>{shop.phone}</span> */}
-  //               shop Phone
-  //             </div>
-  //           )}
-  //           {shop.hours && (
-  //             <div className="flex items-center gap-2 text-sm text-gray-600">
-  //               <Clock className="w-4 h-4 flex-shrink-0 text-gray-400" />
-  //               {/* <span>{shop.hours}</span> */}
-  //               OPEN/CLOSE
-  //             </div>
-  //           )}
-  //         </div>
-
-  //         {/* Description */}
-  //         {shop.description && (
-  //           <p className="text-sm text-gray-600 line-clamp-2 pt-2 border-t">
-  //             {/* {shop.description} */}
-  //             Shop Description
-  //           </p>
-  //         )}
-  //       </div>
-  //     </CardContent>
-  //   </Card>
-  // );
 }

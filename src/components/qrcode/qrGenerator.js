@@ -66,8 +66,6 @@ export default function QrCodeGenerator({ qrData }) {
     // Cleanup is still important
     return () => {
       if (ref.current) {
-        // console.log("ref.inner QRCODE ", qrData);
-
         ref.current.innerHTML = "";
       }
     };
@@ -85,9 +83,6 @@ export default function QrCodeGenerator({ qrData }) {
   useEffect(() => {
     if (qrData && qrCodeInstance) {
       // Update the instance with the new URL
-
-      // console.log("QR Generator ", qrData);
-
       qrCodeInstance.update({ data: qrData });
     }
   }, [qrData, qrCodeInstance]);

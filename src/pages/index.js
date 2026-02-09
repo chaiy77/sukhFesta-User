@@ -167,10 +167,6 @@ export default function Home() {
     }
   };
 
-  // useEffect(()=>{
-  //   gotoPage(activeTab)
-  // },[activeTab])
-
   const gotoPage = (goto) => {
     console.log(goto);
     setPage(goto);
@@ -252,32 +248,6 @@ export default function Home() {
         </div>
       </div>
       <BottomNav activeTab={activeTab} onTabChange={gotoPage} />
-      {/* <nav className="fixed bottom-0 left-0 right-0 bg-white/95  border-t border-gray-200 z-99">
-        <div className="max-w-7xl mx-auto px-2">
-          <div className="grid grid-cols-4 gap-1 py-2 items-center  ">
-            {navItems.map((item, index) => {
-              return (
-                <div
-                  key={index}
-                  className="flex flex-col items-center justify-center"
-                  onClick={() => {
-                    let _page = item.page;
-                    // console.log(_page);
-                    if (currentPage != _page && _page != "") {
-                      // console.log("goto page ", _page);
-
-                      gotoPage(_page);
-                    }
-                  }}
-                >
-                  <item.icon className="w-5 h-5" />
-                  <span className="pt-2 text-xs font-medium">{item.name}</span>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </nav> */}
     </div>
   );
 }

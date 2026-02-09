@@ -6,20 +6,7 @@ import { useShopContext } from "@/context/shopContext";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  ScanLine,
-  TrendingUp,
-  TrendingDown,
-  Sparkles,
-  ArrowRight,
-  MapPin,
-  Store,
-  Coins,
-  Phone,
-  Clock,
-  MapPinned,
-  Navigation,
-} from "lucide-react";
+import { Store, Phone, MapPinned } from "lucide-react";
 
 export default function ShopItemShortDetailComponent({ shop, onMapClick }) {
   const { selectShop } = useShopContext();
@@ -67,12 +54,6 @@ export default function ShopItemShortDetailComponent({ shop, onMapClick }) {
                 <div>ต.{shop.tambol.th}</div>
                 <div>อ.{shop.amphur.th}</div>
                 <div>จ.{shop.province.th}</div>
-                {/*                 
-                  {shop.address ? (
-                    <div>{shop.address.th}</div>
-                  ) : (
-                    <div>address </div>
-                  )} */}
               </div>
 
               <div className="flex items-center text-[10px] gap-2 sm:text-md text-gray-600">
@@ -83,7 +64,6 @@ export default function ShopItemShortDetailComponent({ shop, onMapClick }) {
                   <div>xxx-xxxxxxx </div>
                 )}
               </div>
-              {/* <span className="inline-block item-center px-2 py-0.5 bg-indigo-100 text-indigo-700 text-xs rounded-full  */}
 
               <div className="flex items-center gap-2 text-sm text-gray-600">
                 <div>reward </div>
@@ -107,6 +87,5 @@ export default function ShopItemShortDetailComponent({ shop, onMapClick }) {
         </CardContent>
       </Card>
     </div>
-    // </Link>
   );
 }

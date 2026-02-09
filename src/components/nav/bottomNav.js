@@ -88,13 +88,13 @@ export default function BottomNav({ activeTab, onTabChange }) {
         </div>
       </nav>
       {/* Desktop Side Navigation  */}
-      <aside
+      {/* <aside
         className="fixed left-0 top-0 z-50 hidden h-dvh w-64 flex-col border-r border-border bg-card lg:flex"
         role="navigation"
         aria-label="Main navigation"
-      >
-        {/* Brand */}
-        <div className="flex items-center gap-3 border-b border-border px-6 py-5">
+      > */}
+      {/* Brand */}
+      {/* <div className="flex items-center gap-3 border-b border-border px-6 py-5">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary">
             <MapPin className="h-5 w-5 text-primary-foreground" />
           </div>
@@ -102,9 +102,9 @@ export default function BottomNav({ activeTab, onTabChange }) {
             <h1 className="text-lg font-bold text-foreground">PointGo</h1>
             <p className="text-xs text-muted-foreground">Discover & Earn</p>
           </div>
-        </div>
-        {/* Nav Links */}
-        <nav className="flex flex-1 flex-col gap-1 px-3 py-4">
+        </div> */}
+      {/* Nav Links */}
+      {/* <nav className="flex flex-1 flex-col gap-1 px-3 py-4">
           {navItems.map((item) => {
             const isActive = activeTab === item.id;
             return (
@@ -125,10 +125,10 @@ export default function BottomNav({ activeTab, onTabChange }) {
               </button>
             );
           })}
-        </nav>
-        {/* Bottom User Section */}
+        </nav> */}
+      {/* Bottom User Section */}
 
-        <div className="border-t border-border px-4 py-4">
+      {/* <div className="border-t border-border px-4 py-4">
           <div className="flex items-center gap-3 rounded-xl bg-primary/5 p-3">
             <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary/10 text-sm font-bold text-primary">
               A
@@ -141,7 +141,7 @@ export default function BottomNav({ activeTab, onTabChange }) {
             </div>
           </div>
         </div>
-      </aside>
+      </aside> */}
     </>
   );
 }

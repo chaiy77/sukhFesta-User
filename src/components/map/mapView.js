@@ -46,7 +46,7 @@ const userIcon = () => {
         fill="#f63b3bff"
         className="text-white drop-shadow-md"
       />
-    </div>
+    </div>,
   );
 
   callApiLog("mapView -> 51 -> userIcon = " + iconHTML.toString());
@@ -75,7 +75,7 @@ function MapUpdater({ center }) {
   const map = useMap();
   if (typeof window === "undefined") return null;
   useEffect(() => {
-    callApiLog("mapUpdater -> center = " + JSON.stringify(center));
+    // callApiLog("mapUpdater -> center = " + JSON.stringify(center));
     if (center) {
       map.setView(center, map.getZoom(), { animate: true });
     }
@@ -84,17 +84,6 @@ function MapUpdater({ center }) {
 }
 
 export default function MapView({ shops, onShopClick, selectedShop }) {
-  // const defaultCenter = userLocation || [
-  //   shops[0].location.latitude,
-  //   shops[0].location.longitude,
-  // ];\
-
-  // console.log(
-  //   "MapView => shop list  =",
-  //   shops[0].location.latitude,
-  //   shops[0].location.longitude
-  // );
-
   const { coords, getLocation } = CurrentLocation();
   const [userLocation, setUserlocation] = useState(null);
   const [currentCenter, setCurrentCenter] = useState(null);
@@ -129,32 +118,8 @@ export default function MapView({ shops, onShopClick, selectedShop }) {
     }
   }, [coords]);
 
-  // const [mapZoom, setMapzoom] = useState(15)
-  // const [mapCenter, setMapCenter] = useState();
-
-  // useEffect(() => {
-  //   if (selectedShop) {
-  //     console.log("Map View => selected shop = ", selectedShop);
-  //   }
-  // }, [selectedShop]);
-
-  // useEffect(() => {
-  //   setMapCenter([shops[0].location.latitude, shops[0].location.longitude]);
-  // }, []);
-
-  // const onMarkerClick = (s) => {
-  //   console.log(s);
-  // };
-
   return (
     <div className="h-full w-full">
-      {/* 
-        <Marker position={[51.505, -0.09]}>
-          <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
-          </Popup>
-        </Marker> */}
-
       <MapContainer
         className="h-full w-full z-50"
         center={defaultCenter}
