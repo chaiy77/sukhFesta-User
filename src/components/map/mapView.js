@@ -73,13 +73,13 @@ const userIcon = () => {
 
 function MapUpdater({ center }) {
   const map = useMap();
-  if (typeof window === "undefined") return null;
   useEffect(() => {
     // callApiLog("mapUpdater -> center = " + JSON.stringify(center));
     if (center) {
       map.setView(center, map.getZoom(), { animate: true });
     }
   }, [center, map]);
+  if (typeof window === "undefined") return null;
   return null;
 }
 
