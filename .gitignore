@@ -31,6 +31,15 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # env files (can opt-in for committing if needed)
+# เคลียร์ไฟล์ .env ทุกรูปแบบ
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# หรือจะใช้แบบสั้นเพื่อครอบคลุมทั้งหมด (แนะนำ)
+.env*.local
 .env.*
 .env*
 
