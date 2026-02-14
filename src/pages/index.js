@@ -57,13 +57,13 @@ export default function Home() {
         callApiLog(
           "LIFF ID is undefined. กรุณาเช็คไฟล์ .env.local หรือการตั้งค่า Environment Variables",
         );
-        return;
+        gotoPage("error");
       }
       try {
         await liff.init({ liffId: myLiffId });
         // await callApiLog("Home -> useEffect -> after liffInit()");
         // console.log("l_id = ", process.env.NEXT_PUBLIC_LIFF_ID);
-        await callApiLog("Liff ID = " + myLiffId);
+        // await callApiLog("Liff ID = " + myLiffId);
 
         await liff.ready;
 
@@ -112,7 +112,7 @@ export default function Home() {
         //   // setLoading(false);
       } catch (error) {
         // await callApiLog("Liff ERROR = " + JSON.stringify(error.message));
-
+        await callApiLog("Liff ID = " + myLiffId);
         await callApiLog("Liff ERROR = " + JSON.stringify(error.message));
         gotoPage("error");
       }
