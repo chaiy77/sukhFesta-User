@@ -67,11 +67,11 @@ export default function Home() {
         if (!_.isEmpty(liff)) {
           await callApiLog("Home => 100 => liff Completed");
           const idToken = liff.getIDToken();
-          await callApiLog("Home => 101  => ID Token 1 = " + idToken);
+
           if (!_.isEmpty(idToken)) {
             setLiffObject(liff);
             // setLineToken(idToken);
-
+            await callApiLog("Home => 101  => ID Token 1 = " + idToken);
             let _user = await getUserInfo(idToken);
             await callApiLog(
               "Home -> useEffect 148 -> call getUserProfile -> user = " +
