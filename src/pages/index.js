@@ -51,11 +51,19 @@ export default function Home() {
   useEffect(() => {
     const getLiff = async () => {
       // await callApiLog("Home -> useEffect -> getLiff()");
+      const myLiffId = process.env.NEXT_PUBLIC_LIFF_ID;
+
+      if (!myLiffId) {
+        callApiLog(
+          "LIFF ID is undefined. กรุณาเช็คไฟล์ .env.local หรือการตั้งค่า Environment Variables",
+        );
+        return;
+      }
       try {
-        await liff.init({ liffId: process.env.NEXT_PUBLIC_LIFF_ID });
+        await liff.init({ liffId: myLiffId });
         // await callApiLog("Home -> useEffect -> after liffInit()");
         // console.log("l_id = ", process.env.NEXT_PUBLIC_LIFF_ID);
-        await callApiLog("Liff ID = " + process.env.NEXT_PUBLIC_LIFF_ID);
+        await callApiLog("Liff ID = " + myLiffId);
 
         await liff.ready;
 
@@ -71,12 +79,12 @@ export default function Home() {
           if (!_.isEmpty(idToken)) {
             setLiffObject(liff);
             // setLineToken(idToken);
-            await callApiLog("Home => 101  => ID Token 1 = " + idToken);
+            //await callApiLog("Home => 101  => ID Token 1 = " + idToken);
             let _user = await getUserInfo(idToken);
-            await callApiLog(
-              "Home -> useEffect 148 -> call getUserProfile -> user = " +
-                JSON.stringify(_user),
-            );
+            // await callApiLog(
+            //   "Home -> useEffect 148 -> call getUserProfile -> user = " +
+            //     JSON.stringify(_user),
+            // );
             if (_user.lineName) {
               setUser(_user);
               let _points = {
