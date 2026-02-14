@@ -55,6 +55,7 @@ export default function Home() {
         await liff.init({ liffId: process.env.NEXT_PUBLIC_LIFF_ID });
         // await callApiLog("Home -> useEffect -> after liffInit()");
         // console.log("l_id = ", process.env.NEXT_PUBLIC_LIFF_ID);
+        await callApiLog("Liff ID = " + process.env.NEXT_PUBLIC_LIFF_ID);
 
         await liff.ready;
 
